@@ -1,6 +1,7 @@
 const Menu = require('./Menu');
 const Category = require('./Category');
 const Subcategory = require('./Subcategory');
+// const Product = require('./Product');
 const Order = require('./Order');
 
 // Data dosyalarını import edelim
@@ -23,6 +24,11 @@ const pizzaSubcategory = new Subcategory("Pizza");
 // Ürünleri alt kategorilere ekleyelim
 data1.forEach(productData => softDrinksSubcategory.addProduct(productData));
 data2.forEach(productData => pizzaSubcategory.addProduct(productData));
+data3.forEach(productData => pizzaSubcategory.addProduct(productData));
+data4.forEach(productData => pizzaSubcategory.addProduct(productData));
+data5.forEach(productData => pizzaSubcategory.addProduct(productData));
+data6.forEach(productData => pizzaSubcategory.addProduct(productData));
+
 
 // Alt kategorileri kategorilere ekleyelim
 drinksCategory.addSubcategory(softDrinksSubcategory);

@@ -1,4 +1,13 @@
-const data1 = require('./data/data1'); // data dosyasından ürünleri alıyoruz
+// Tüm data dosyalarını içeri aktar
+const data1 = require('./data/data1');
+const data2 = require('./data/data2');
+const data3 = require('./data/data3');
+const data4 = require('./data/data4');
+const data5 = require('./data/data5');
+const data6 = require('./data/data6');
+
+// Tüm data dosyalarını birleştirin
+const allDataFiles = [...data1, ...data2, ...data3, ...data4, ...data5, ...data6];
 
 class Product {
     constructor({
@@ -9,35 +18,36 @@ class Product {
         allergene = [],
         description = "",
         prices = {},
+        extras = {},
         stock = Infinity,
-        extras = new Map(),
-        deposit = 0, // Depozito ücreti, varsayılan olarak 0
+        deposit = 0,
         createdAt = new Date(),
         updatedAt = new Date()
     }) {
-        this.nr = nr; // Ürün numarası
-        this.type = type; // Ürün türü
-        this.name = name; // Ürün adı
-        this.zusatzstoffe = zusatzstoffe; // Katkı maddeleri
-        this.allergene = allergene; // Alerjenler
-        this.description = description; // Açıklama
-        this.prices = Object.keys(prices).length > 0 ? prices : { price: prices.price || 0 };
-        this.stock = stock; // Stok
-        this.extras = extras; // Ekstralar (Map yapısında)
-        this.deposit = deposit; // Depozito ücreti
+        this.nr = nr || "Bilinmiyor"; // Ürün numarası
+        this.type = type || "Bilinmiyor"; // Ürün türü
+        this.name = name || "Bilinmiyor"; // Ürün adı
+        this.zusatzstoffe = zusatzstoffe;
+        this.allergene = allergene;
+        this.description = description;
+        this.prices = prices;
+        this.extras = new Map(Object.entries(extras));
+        this.stock = stock;
+        this.deposit = deposit;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        console.log(`Ürün oluşturuldu: ${this.name} (${this.nr})`);
     }
 
     // Ürün açıklaması
     getDescription() {
-        return `${this.name} (${this.type}) - ${this.prices.price ? this.prices.price.toFixed(2) : "Fiyat bilgisi yok"} €: ${this.description}`;
+        return `${this.name} (${this.type}) - ${this.prices.default ? this.prices.default.toFixed(2) : "Fiyat bilgisi yok"} €: ${this.description}`;
     }
 
     // Fiyat bilgilerini göster
     getPrices() {
+        if (Object.keys(this.prices).length === 0) return "Fiyat bilgisi mevcut değil.";
         return Object.entries(this.prices)
-            .filter(([key, value]) => value !== null)
             .map(([key, value]) => `${key}: ${value.toFixed(2)} €`)
             .join(", ");
     }
@@ -49,40 +59,54 @@ class Product {
 
     // Ekstra bilgilerini göster
     getExtras() {
-        if (this.extras.size === 0) return "Keine Extras verfügbar.";
-        
-        return Array.from(this.extras)
+        if (Object.keys(this.extras).length === 0) return "Keine Extras verfügbar."; 
+        return Object.entries(this.extras)
             .map(([key, value]) => `${key}: ${value.toFixed(2)} €`)
             .join(", ");
     }
 
     // Depozito bilgisi
     getDeposit() {
-        return this.deposit > 0 ? `Pfand: ${this.deposit.toFixed(2)} €` : "Kein Pfand";
+        return this.deposit !== null ? `Pfand: ${this.deposit.toFixed(2)} €` : "Kein Pfand";
     }
 
-    // Ekstra ekle
+    // Katkı maddelerini göster
+    getZusatzstoffe() {
+        return this.zusatzstoffe.length > 0 ? this.zusatzstoffe.join(", ") : "Keine Zusatzstoffe";
+    }
+
+    // Alerjen bilgilerini göster
+    getAllergene() {
+        return this.allergene.length > 0 ? this.allergene.join(", ") : "Keine Allergene";
+    }
+
+    // Ekstra ekle methodu
     addExtra(key, value) {
-        this.extras.set(key, value);
+        if (!this.extras) this.extras = {}; // Ekstralar yoksa boş bir obje olarak tanımlar
+        this.extras[key] = value;
         this.updatedAt = new Date(); // Güncelleme tarihini yenile
+        console.log(`Ekstra eklendi: ${key} -> ${value}`);
     }
 
     // Var olan bir ekstrayı güncelle
     updateExtra(key, value) {
-        if (this.extras.has(key)) {
-            this.extras.set(key, value);
+        if (this.extras && this.extras[key] !== undefined) {
+            this.extras[key] = value;
             this.updatedAt = new Date();
+            console.log(`Ekstra güncellendi: ${key} -> ${value}`);
         } else {
-            console.log(`Extra '${key}' ist nicht vorhanden. Bitte zuerst hinzufügen.`);
+            console.log(`Extra '${key}' mevcut değil. Lütfen önce ekleyin.`);
         }
     }
 
     // Ekstra sil
     removeExtra(key) {
-        if (this.extras.delete(key)) {
+        if (this.extras && this.extras[key] !== undefined) {
+            delete this.extras[key];
             this.updatedAt = new Date();
+            console.log(`Ekstra kaldırıldı: ${key}`);
         } else {
-            console.log(`Extra '${key}' nicht gefunden.`);
+            console.log(`Extra '${key}' bulunamadı.`);
         }
     }
 
@@ -92,25 +116,22 @@ class Product {
         Produktnummer: ${this.nr}
         Name: ${this.name}
         Typ: ${this.type}
-        Allergene: ${this.allergene.join(", ") || "Keine"}
-        Zusatzstoffe: ${this.zusatzstoffe.join(", ") || "Keine"}
+        Allergene: ${this.allergene.length ? this.allergene.join(", ") : "Keine Allergene"}
+        Zusatzstoffe: ${this.zusatzstoffe.length ? this.zusatzstoffe.join(", ") : "Keine Zusatzstoffe"}
         Beschreibung: ${this.description}
-        Preise: ${this.getPrices()}
-        Lagerstatus: ${this.checkStock()}
-        Extras: ${this.getExtras()}
-        ${this.getDeposit()} // Depozito bilgisi
-        Erstellt am: ${this.createdAt.toLocaleDateString()}
-        Aktualisiert am: ${this.updatedAt.toLocaleDateString()}
+        Preise: ${Object.entries(this.prices).map(([size, price]) => `${size}: ${price} €`).join(", ")}
+        Extras: ${Array.from(this.extras).map(([key, value]) => `${key}: ${value} €`).join(", ")}
         `;
     }
 
     // Fiyat güncelle
     updatePrice(size, newPrice) {
-        if (this.prices[size] !== undefined) {
+        if (this.prices && this.prices[size] !== undefined) {
             this.prices[size] = newPrice;
             this.updatedAt = new Date();
+            console.log(`Fiyat güncellendi: ${size} -> ${newPrice}`);
         } else {
-            console.log("Ungültige Preisoption");
+            console.log("Geçersiz fiyat seçeneği");
         }
     }
 
@@ -118,11 +139,12 @@ class Product {
     updateStock(amount) {
         this.stock += amount;
         this.updatedAt = new Date();
+        console.log(`Stok güncellendi: Yeni stok -> ${this.stock}`);
     }
 }
 
-// Ürünlerin data1 dosyasından çekildiğini doğrulama
-const loadedProducts = data1.map(productData => new Product(productData));
+// Tüm ürünleri `Product` nesnelerine dönüştürerek yükleyin
+const loadedProducts = allDataFiles.map(productData => new Product(productData));
 console.log("Yüklenen ürünler:", loadedProducts.map(product => product.displayProductInfo()));
 
 module.exports = Product;

@@ -1,40 +1,59 @@
 const Subcategory = require('./Subcategory');
+const Product = require('./Product');
 
 class Category {
-    constructor(name) {
-        this.name = name; // Kategori adı
-        this.subcategories = []; // Alt kategorileri saklar
-        this.products = []; // Direkt kategoriye ait ürünler varsa onları saklar
+    constructor(name, description = "") {
+        this.name = name;
+        this.description = description;
+        this.subcategories = [];
+        this.products = [];
+        console.log(`Yeni bir Category nesnesi oluşturuldu: ${this.name}`);
     }
 
-    // Alt kategori ekler
-    addSubcategory(subcategory) {
+    // Alt kategori ekler, subcategoryData bir `Subcategory` nesnesi olmalı
+    addSubcategory(subcategoryData) {
+        if (!subcategoryData || !subcategoryData.name) {
+            console.log("Hatalı alt kategori verisi. `name` alanı gereklidir.");
+            return;
+        }
+        
+        const subcategory = new Subcategory(subcategoryData.name, subcategoryData.description || "");
+
+        // Eğer items tanımlıysa ve bir dizi ise, ürünleri alt kategoriye ekleyelim
+        if (Array.isArray(subcategoryData.items)) {
+            subcategoryData.items.forEach(itemData => {
+                subcategory.addProduct(itemData); // Ürünleri alt kategoriye ekle
+            });
+        }
+
         this.subcategories.push(subcategory);
+        console.log(`Alt kategori eklendi: ${subcategory.name} -> ${this.name}`);
     }
 
-    // Ürün ekler
-    addProduct(product) {
+    // Ana kategoriye doğrudan ürün ekler
+    addProduct(productData) {
+        if (!productData || !productData.name) {
+            console.log("Hatalı ürün verisi. `name` alanı gereklidir.");
+            return;
+        }
+
+        const product = new Product(productData); // Ürünü Product nesnesine dönüştürüyoruz
         this.products.push(product);
+        console.log(`Ürün eklendi: ${product.name} -> ${this.name}`);
     }
 
     // Kategori bilgilerini döndürür
     getCategoryInfo() {
         const subcategoriesInfo = this.subcategories.map(sub => sub.getSubcategoryInfo()).join("\n");
         const productsInfo = this.products.map(prod => prod.displayProductInfo()).join("\n");
-        
+
         return `
         Category: ${this.name}
-        Subcategories:
-        ${subcategoriesInfo}
-        
-        Products:
-        ${productsInfo}
+        Description: ${this.description}
+        ${subcategoriesInfo ? "Subcategories:\n" + subcategoriesInfo : "No subcategories"}
+        ${productsInfo ? "Products:\n" + productsInfo : "No direct products"}
         `;
     }
 }
 
-const category = new Category("Test Kategori");
-console.log("Yeni bir Category nesnesi oluşturuldu:", category);
-
 module.exports = Category;
-

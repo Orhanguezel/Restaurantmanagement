@@ -15,6 +15,8 @@ class Order {
         createdAt = new Date(),
         updatedAt = new Date(),
     }) {
+        console.log("Sipariş oluşturuluyor...");
+
         this.customerInfo = {
             name: customerInfo.name || "",
             surname: customerInfo.surname || "",
@@ -26,6 +28,8 @@ class Order {
             specialRequest: customerInfo.specialRequest || "",
         };
         this.items = items.map(item => new Product(item)); // items içindeki her ürünü Product nesnesine dönüştürüyoruz
+        console.log("Sipariş için ürünler yüklendi:", this.items.map(item => item.displayProductInfo()));
+
         this.orderSummary = {
             subtotal: orderSummary.subtotal || 0,
             tax: orderSummary.tax || 0,
@@ -51,16 +55,21 @@ class Order {
         this.notes = notes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+
+        console.log("Yeni sipariş oluşturuldu:", this.displayOrderInfo());
     }
 
     // Müşteri bilgilerini güncelle
     updateCustomerInfo(newInfo) {
+        console.log("Müşteri bilgileri güncelleniyor...");
         this.customerInfo = { ...this.customerInfo, ...newInfo };
         this.updateTimestamp();
+        console.log("Güncellenmiş müşteri bilgileri:", this.customerInfo);
     }
 
     // Sipariş durumunu güncelle
     updateStatus(newStatus) {
+        console.log("Sipariş durumu güncelleniyor...");
         const validStatuses = [
             "Eingehende Bestellungen",
             "Bestellungen in Vorbereitung",
@@ -71,28 +80,35 @@ class Order {
         if (validStatuses.includes(newStatus)) {
             this.orderStatus = newStatus;
             this.updateTimestamp();
+            console.log("Yeni sipariş durumu:", this.orderStatus);
         } else {
-            console.log("Geçersiz sipariş durumu");
+            console.log("Geçersiz sipariş durumu:", newStatus);
         }
     }
 
     // Siparişe yeni ürün ekle
     addItem(item) {
+        console.log("Siparişe yeni ürün ekleniyor...");
         const newItem = new Product(item); // Yeni ürünü Product nesnesi olarak ekleyelim
         this.items.push(newItem);
         this.calculateTotal();
         this.updateTimestamp();
+        console.log("Yeni ürün eklendi:", newItem.displayProductInfo());
+        console.log("Güncellenmiş toplam:", this.orderSummary.grandTotal);
     }
 
     // Ürünleri siparişten çıkar
     removeItem(nr) {
+        console.log(`Siparişten ürün çıkarılıyor: Nr -> ${nr}`);
         this.items = this.items.filter((item) => item.nr !== nr);
         this.calculateTotal();
         this.updateTimestamp();
+        console.log("Ürün çıkarıldı. Güncellenmiş toplam:", this.orderSummary.grandTotal);
     }
 
     // Ekstra maliyetleri ve vergiyi hesaplayarak toplam güncelleme
     calculateTotal() {
+        console.log("Toplam hesaplanıyor...");
         const subtotal = this.items.reduce((acc, item) => {
             const priceValue = item.prices.price || item.selectedPrice?.value || 0;
             const quantity = item.quantity || 1;
@@ -103,23 +119,29 @@ class Order {
         this.orderSummary.subtotal = subtotal;
         this.orderSummary.total = subtotal + this.orderSummary.tax - this.orderSummary.discount;
         this.orderSummary.grandTotal = this.orderSummary.total + this.orderSummary.deliveryFee;
+        console.log("Hesaplanan toplam:", this.orderSummary.grandTotal);
     }
 
     // Ödeme bilgilerini güncelle
     updatePaymentDetails(newPaymentDetails) {
+        console.log("Ödeme bilgileri güncelleniyor...");
         this.paymentDetails = { ...this.paymentDetails, ...newPaymentDetails };
         this.updateTimestamp();
+        console.log("Güncellenmiş ödeme bilgileri:", this.paymentDetails);
     }
 
     // Teslimat bilgilerini güncelle
     updateDeliveryDetails(newDeliveryDetails) {
+        console.log("Teslimat bilgileri güncelleniyor...");
         this.deliveryDetails = { ...this.deliveryDetails, ...newDeliveryDetails };
         this.updateTimestamp();
+        console.log("Güncellenmiş teslimat bilgileri:", this.deliveryDetails);
     }
 
     // Güncelleme tarihini yenile
     updateTimestamp() {
         this.updatedAt = new Date();
+        console.log("Güncelleme tarihi yenilendi:", this.updatedAt);
     }
 
     // Sipariş bilgilerini göster
@@ -153,38 +175,14 @@ const order = new Order({
     deliveryFee: 5,
 });
 
-// Yeni sipariş oluşturuldu
-console.log("Yeni sipariş oluşturuldu:", order.displayOrderInfo());
-
-// Müşteri bilgileri güncellendi
-console.log("Müşteri bilgileri güncellendi:", order.customerInfo);
-
-// Sipariş durumu güncellendi
+// Test amaçlı işlemler
+order.updateCustomerInfo({ name: "Jane", email: "jane.doe@example.com" });
 order.updateStatus("Bestellungen in Vorbereitung");
-console.log("Sipariş durumu güncellendi:", order.orderStatus);
-
-// Yeni ürün eklendi
-order.addItem(data1[0]); // data1 içindeki ilk ürünü ekledik
-console.log("Yeni ürün eklendi:", data1[0]);
-console.log("Güncellenmiş sipariş toplamı:", order.orderSummary.grandTotal);
-
-// Ürün siparişten çıkarıldı
+order.addItem(data1[0]);
 order.removeItem("001");
-console.log("Ürün siparişten çıkarıldı: 001");
-console.log("Güncellenmiş sipariş toplamı:", order.orderSummary.grandTotal);
-
-// Ödeme bilgileri güncellendi
 order.updatePaymentDetails({ isPaid: true });
-console.log("Ödeme bilgileri güncellendi:", order.paymentDetails);
-
-// Teslimat bilgileri güncellendi
 order.updateDeliveryDetails({ deliveryDriver: "Michael" });
-console.log("Teslimat bilgileri güncellendi:", order.deliveryDetails);
 
-// Güncellenme tarihi yenilendi
-console.log("Güncellenme tarihi yenilendi:", order.updatedAt);
-
-// Sipariş bilgilerini göster
 console.log("Sipariş Bilgileri:", order.displayOrderInfo());
 
 module.exports = Order;
