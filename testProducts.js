@@ -8,6 +8,7 @@ const dataFiles = fs.readdirSync(dataDir);
 
 // Test sonuçlarını biriktirmek için bir dizi
 let testResults = [];
+let depositProducts = []; // Depozitosu olan ürünleri saklamak için
 
 dataFiles.forEach(file => {
     const filePath = path.join(dataDir, file);
@@ -50,6 +51,17 @@ dataFiles.forEach(file => {
                         errors.push("Deposit (depozito) bir sayı olmalı.");
                     }
 
+                    // Depozitosu olan ürünleri depolayalım
+                    if (product.deposit > 0) {
+                        depositProducts.push({
+                            file: file,
+                            category: categoryData.name,
+                            subcategory: subcategoryData.name,
+                            productName: product.name,
+                            deposit: product.deposit
+                        });
+                    }
+
                     // Hatalı alanları test sonuçlarına ekle
                     if (errors.length > 0) {
                         testResults.push({
@@ -73,6 +85,15 @@ dataFiles.forEach(file => {
             });
         });
     });
+});
+
+// Depozitosu olan ürünleri yazdır
+console.log("Depozitosu olan ürünler:\n");
+depositProducts.forEach(result => {
+    console.log(`Dosya: ${result.file}`);
+    console.log(`  Kategori: ${result.category} - Alt Kategori: ${result.subcategory}`);
+    console.log(`  Ürün: ${result.productName}`);
+    console.log(`  Depozito: ${result.deposit.toFixed(2)} €\n`);
 });
 
 // Test sonuçlarını konsola yazdır

@@ -15,7 +15,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: '0,33L',
-              prices: { default: 2.50 },
+              prices: { Price: 2.50 },
              
             },
             {
@@ -25,7 +25,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: '(versch. Sorten) 0,5L',
-              prices: { default: 1.90 }
+              prices: { Price: 1.90 }
             },
             {
               nr: '125',
@@ -34,7 +34,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Früh Kölsch 0,33L',
-              prices: { default: 2.00 }
+              prices: { Price: 2.00 }
             },
             {
               nr: '126',
@@ -43,7 +43,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Früh Kölsch 0,5L',
-              prices: { default: 2.50 }
+              prices: { Price: 2.50 }
             },
             {
               nr: '127',
@@ -52,7 +52,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: '0,5L',
-              prices: { default: 2.50 }
+              prices: { Price: 2.50 }
             }
           ]
         },
@@ -68,7 +68,8 @@ module.exports = [
               zusatztoffe: [1, 10],
               allergene: [],
               description: 'Cola 0,33L',
-              prices: { default: 2.00 },
+              prices: { Price: 2.00 },
+              deposit: 0.25
             },
             {
               nr: '129',
@@ -77,7 +78,8 @@ module.exports = [
               zusatztoffe: [1, 2, 4, 5, 10],
               allergene: [],
               description: 'Cola Light 0,33L',
-              prices: { default: 2.00 }
+              prices: { Price: 2.00 },
+              deposit: 0.25
             },
             {
               nr: '130',
@@ -86,7 +88,8 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Fanta 0,33L',
-              prices: { default: 2.00 }
+              prices: { Price: 2.00 },
+              deposit: 0.25
             },
             {
               nr: '131',
@@ -95,7 +98,9 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Sprite 0,33L',
-              prices: { default: 2.00 }
+              prices: { Price: 2.00 },
+              deposit: 0.25
+
             },
             {
               nr: '132',
@@ -104,7 +109,8 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Eistee 0,33L',
-              prices: { default: 2.00 }
+              prices: { Price: 2.00 },
+              deposit: 0.25
             },
             {
               nr: '133',
@@ -113,7 +119,8 @@ module.exports = [
               zusatztoffe: [1, 10],
               allergene: [],
               description: 'Cola 1,0L',
-              prices: { default: 3.00 }
+              prices: { Price: 3.00 },
+              deposit: 0.25
             },
             {
               nr: '134',
@@ -122,7 +129,8 @@ module.exports = [
               zusatztoffe: [1, 2, 4, 5, 10],
               allergene: [],
               description: 'Cola Light 1,0L',
-              prices: { default: 3.00 }
+              prices: { Price: 3.00 },
+              deposit: 0.25
             },
             {
               nr: '135',
@@ -131,7 +139,8 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Fanta 1,0L',
-              prices: { default: 3.00 }
+              prices: { Price: 3.00 },
+              deposit: 0.25
             },
             {
               nr: '136',
@@ -140,7 +149,8 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Sprite 1,0L',
-              prices: { default: 3.00 }
+              prices: { Price: 3.00 },
+              deposit: 0.25
             },
             {
               nr: '137',
@@ -149,7 +159,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: '1,0L',
-              prices: { default: 2.50 }
+              prices: { Price: 2.50 }
             },
             {
               nr: '138',
@@ -158,7 +168,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: '(Türkische Brause) 0,33L',
-              prices: { default: 2.00 }
+              prices: { Price: 2.00 }
             },
             {
               nr: '139',
@@ -167,7 +177,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: '0,25L',
-              prices: { default: 1.90 }
+              prices: { Price: 1.90 }
             },
             {
               nr: '140',
@@ -176,7 +186,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Tasse Kaffee',
-              prices: { default: 2.50 }
+              prices: { Price: 2.50 }
             },
             {
               nr: '141',
@@ -185,7 +195,7 @@ module.exports = [
               zusatztoffe: [],
               allergene: [],
               description: 'Tee',
-              prices: { default: 1.50 }
+              prices: { Price: 1.50 }
             }
           ]
         }

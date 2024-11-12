@@ -15,7 +15,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a"],
                 description: "8 Stück mit Kräuterbutter",
-                prices: { default: 3.50 },
+                prices: { Price: 3.50 },
                 extras: {
                   Mais: 1.0,
                   Brocoli: 1.0,
@@ -46,7 +46,7 @@ module.exports = [
                 zusatztoffe: [1],
                 allergene: ["a", "g"],
                 description: "mit Gouda",
-                prices: { default: 5.50 },
+                prices: { Price: 5.50 },
                 extras: {
                   Mais: 1.0,
                   Brocoli: 1.0,
@@ -77,7 +77,7 @@ module.exports = [
                 zusatztoffe: [1],
                 allergene: ["a", "g"],
                 description: "mit Thunfisch und Gouda",
-                prices: { default: 6.50 },
+                prices: { Price: 6.50 },
                 extras: {
                   Mais: 1.0,
                   Brocoli: 1.0,
@@ -108,7 +108,7 @@ module.exports = [
                 zusatztoffe: [1, 2, 3],
                 allergene: ["a", "g", "i", "j"],
                 description: "mit Schinken oder Salami und Gouda",
-                prices: { default: 6.50 },
+                prices: { Price: 6.50 },
                 extras: {
                   Mais: 1.0,
                   Brocoli: 1.0,
@@ -139,7 +139,7 @@ module.exports = [
                 zusatztoffe: [1, 2, 3, 4],
                 allergene: ["a", "g", "f", "l", "b"],
                 description: "mit Dönerfleisch, Gouda und Zwiebeln",
-                prices: { default: 6.50 },
+                prices: { Price: 6.50 },
                 extras: {
                   Mais: 1.0,
                   Brocoli: 1.0,
@@ -170,7 +170,7 @@ module.exports = [
                 zusatztoffe: [1],
                 allergene: ["a", "g"],
                 description: "mit türk. Knoblauchwurst und Gouda",
-                prices: { default: 6.50 },
+                prices: { Price: 6.50 },
                 extras: {
                   Mais: 1.0,
                   Brocoli: 1.0,
@@ -208,7 +208,7 @@ module.exports = [
                 zusatztoffe: [2, 4],
                 allergene: ["a", "b", "i", "j"],
                 description: "mit Salat, Pommes oder Reis",
-                prices: { default: 11.50 }
+                prices: { Price: 11.50 }
               },
               {
                 nr: "63",
@@ -217,7 +217,7 @@ module.exports = [
                 zusatztoffe: [1, 2, 8],
                 allergene: ["a", "j"],
                 description: "mit Salat, Pommes oder Reis",
-                prices: { default: 11.50 }
+                prices: { Price: 11.50 }
               },
               {
                 nr: "64",
@@ -226,7 +226,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a"],
                 description: "mit Salat, Pommes oder Reis",
-                prices: { default: 10.50 }
+                prices: { Price: 10.50 }
               },
               {
                 nr: "65",
@@ -235,7 +235,7 @@ module.exports = [
                 zusatztoffe: [9],
                 allergene: ["a", "g", "f", "i"],
                 description: "mit Salat, Pommes oder Reis",
-                prices: { default: 11.50 }
+                prices: { Price: 11.50 }
               },
               {
                 nr: "66",
@@ -244,7 +244,7 @@ module.exports = [
                 zusatztoffe: [9],
                 allergene: ["a", "g", "f", "i"],
                 description: "mit Salat, Pommes oder Reis",
-                prices: { default: 12.00 }
+                prices: { Price: 12.00 }
               },
               {
                 nr: "67",
@@ -253,7 +253,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "o"],
                 description: "mit Salat, Pommes oder Reis",
-                prices: { default: 10.50 }
+                prices: { Price: 10.50 }
               },
               {
                 nr: "68",
@@ -262,7 +262,7 @@ module.exports = [
                 zusatztoffe: [3, 9],
                 allergene: ["a", "g", "f", "i", "j"],
                 description: "mit Ananas, Schinken, Käse überbacken, Sahne, Salat, Pommes oder Reis",
-                prices: { default: 12.00 }
+                prices: { Price: 12.00 }
               },
               {
                 nr: "69",
@@ -271,7 +271,7 @@ module.exports = [
                 zusatztoffe: [9],
                 allergene: ["a", "g", "f", "i"],
                 description: "mit Broccoli, Champignons, Paprika, Gouda, Sahne, Salat, Pommes oder Reis",
-                prices: { default: 13.00 }
+                prices: { Price: 13.00 }
               },
               {
                 nr: "70",
@@ -280,7 +280,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a"],
                 description: "mit Salat, Pommes oder Reis",
-                prices: { default: 13.00 }
+                prices: { Price: 13.00 }
               },
               {
                 nr: "71",
@@ -289,7 +289,7 @@ module.exports = [
                 zusatztoffe: [1, 2, 3],
                 allergene: ["a", "c", "g", "i", "o"],
                 description: "mit Peperoni, Zwiebel, Sauce Hollandaise, Salat, Pommes oder Reis",
-                prices: { default: 12.50 }
+                prices: { Price: 12.50 }
               },
               {
                 nr: "72",
@@ -298,7 +298,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a"],
                 description: "mit Bolognese, Salat, Pommes oder Reis",
-                prices: { default: 11.50 }
+                prices: { Price: 11.50 }
               },
               {
                 nr: "73",
@@ -307,7 +307,7 @@ module.exports = [
                 zusatztoffe: [9],
                 allergene: ["a", "g", "f", "i"],
                 description: "mit Broccoli, Champignons, Paprika, Salat, Pommes oder Reis",
-                prices: { default: 12.50 }
+                prices: { Price: 12.50 }
               }
             ]
           },
@@ -332,7 +332,7 @@ module.exports = [
                 zusatztoffe: [1, 3, 4],
                 allergene: ["a", "c", "f", "i", "j", "p"],
                 description: "",
-                prices: { default: 2.50 }
+                prices: { Price: 2.50 }
               },
               {
                 nr: "76",
@@ -341,7 +341,7 @@ module.exports = [
                 zusatztoffe: [1, 3, 4],
                 allergene: ["a", "c", "f", "i", "j", "p"],
                 description: "",
-                prices: { default: 4.00 }
+                prices: { Price: 4.00 }
               },
               {
                 nr: "77",
@@ -350,7 +350,7 @@ module.exports = [
                 zusatztoffe: [3, 4, 9],
                 allergene: ["i", "j"],
                 description: "",
-                prices: { default: 3.00 }
+                prices: { Price: 3.00 }
               },
               {
                 nr: "78",
@@ -359,7 +359,7 @@ module.exports = [
                 zusatztoffe: [1, 2, 3],
                 allergene: ["i", "j"],
                 description: "",
-                prices: { default: 4.00 }
+                prices: { Price: 4.00 }
               },
               {
                 nr: "79",
@@ -368,7 +368,7 @@ module.exports = [
                 zusatztoffe: [1, 2, 3, 4, 8, 9],
                 allergene: ["i", "j"],
                 description: "",
-                prices: { default: 5.00 }
+                prices: { Price: 5.00 }
               },
               {
                 nr: "791",
@@ -377,7 +377,7 @@ module.exports = [
                 zusatztoffe: [2, 3, 4, 9],
                 allergene: ["a", "b", "i", "j"],
                 description: "",
-                prices: { default: 5.00 }
+                prices: { Price: 5.00 }
               },
               {
                 nr: "80",
@@ -395,7 +395,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a"],
                 description: "(form nuggets) 7 Stück mit Pommes",
-                prices: { default: 7.50 }
+                prices: { Price: 7.50 }
               },
               {
                 nr: "82",
@@ -404,7 +404,7 @@ module.exports = [
                 zusatztoffe: [1, 4],
                 allergene: ["a", "c", "f", "g", "o"],
                 description: "",
-                prices: { default: 2.50 }
+                prices: { Price: 2.50 }
               },
               {
                 nr: "83",
@@ -413,7 +413,7 @@ module.exports = [
                 zusatztoffe: [2, 9],
                 allergene: ["a", "c", "j", "k", "o"],
                 description: "mit Pommes",
-                prices: { default: 7.50 }
+                prices: { Price: 7.50 }
               },
               {
                 nr: "84",
@@ -422,7 +422,7 @@ module.exports = [
                 zusatztoffe: [2, 9],
                 allergene: ["a", "c", "j", "k", "o"],
                 description: "",
-                prices: { default: 5.00 }
+                prices: { Price: 5.00 }
               },
               {
                 nr: "85",
@@ -431,7 +431,7 @@ module.exports = [
                 zusatztoffe: [1, 9],
                 allergene: ["a", "g"],
                 description: "6 Stück",
-                prices: { default: 4.00 }
+                prices: { Price: 4.00 }
               },
               {
                 nr: "851",
@@ -440,7 +440,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: [],
                 description: "6 Stück mit Tzatziki",
-                prices: { default: 5.00 }
+                prices: { Price: 5.00 }
               }
             ]
           },
@@ -456,7 +456,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "mit Tomatensauce",
-                prices: { default: 7.50 },
+                prices: { Price: 7.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -466,7 +466,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "mit Hackfleischsauce",
-                prices: { default: 8.50 },
+                prices: { Price: 8.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -476,7 +476,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c", "d"],
                 description: "mit Thunfisch, Zwiebeln, Tomatensauce und Knoblauch",
-                prices: { default: 9.50 },
+                prices: { Price: 9.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -486,7 +486,7 @@ module.exports = [
                 zusatztoffe: [1, 3, 12],
                 allergene: ["a", "c"],
                 description: "mit gek. Schinken, Ei, Sauce Hollandaise",
-                prices: { default: 8.90 },
+                prices: { Price: 8.90 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -496,7 +496,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "mit Paprika, Zwiebeln, Oliven, scharf, Tomatensauce",
-                prices: { default: 9.50 },
+                prices: { Price: 9.50 },
                 extras: { auchÜberbacken: 2.00 }
               }
             ]
@@ -513,7 +513,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "in Hackfleischsauce",
-                prices: { default: 9.50 },
+                prices: { Price: 9.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -523,7 +523,7 @@ module.exports = [
                 zusatztoffe: [1, 2, 3, 12],
                 allergene: [],
                 description: "gekochter Schinken, Spinat, in scharfer Tomaten-Sahnesauce",
-                prices: { default: 9.90 },
+                prices: { Price: 9.90 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -533,7 +533,7 @@ module.exports = [
                 zusatztoffe: [1, 3, 12],
                 allergene: [],
                 description: "gekochter Schinken, Gouda, Sahnesauce",
-                prices: { default: 10.50 },
+                prices: { Price: 10.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -543,7 +543,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "Paprika, Zwiebeln, Oliven, scharf, Knoblauch, Tomatensauce",
-                prices: { default: 10.50 },
+                prices: { Price: 10.50 },
                 extras: { auchÜberbacken: 2.00 }
               }
             ]
@@ -560,7 +560,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "in Hackfleischsauce",
-                prices: { default: 8.50 },
+                prices: { Price: 8.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -570,7 +570,7 @@ module.exports = [
                 zusatztoffe: [1, 3, 12],
                 allergene: [],
                 description: "gekochter Schinken, Zwiebeln, Knoblauch, Sauce Hollandaise",
-                prices: { default: 9.50 },
+                prices: { Price: 9.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -580,7 +580,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "Hühnerbrustfilet, Paprika, Oliven, Knoblauch, scharfe Tomatensauce",
-                prices: { default: 10.50 },
+                prices: { Price: 10.50 },
                 extras: { auchÜberbacken: 2.00 }
               },
               {
@@ -590,7 +590,7 @@ module.exports = [
                 zusatztoffe: [],
                 allergene: ["a", "c"],
                 description: "Paprika, Broccoli, Champignons, scharf, Knoblauch, Sauce Hollandaise",
-                prices: { default: 10.50 },
+                prices: { Price: 10.50 },
                 extras: { auchÜberbacken: 2.00 }
               }
             ]

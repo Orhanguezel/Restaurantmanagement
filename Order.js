@@ -7,7 +7,7 @@ class Order {
         items = [],
         orderSummary = {},
         orderStatus = "Eingehende Bestellungen",
-        orderType,
+        orderType = "Restorandan", // "Restorandan", "Pickup", "Lieferung"
         paymentDetails = {},
         deliveryDetails = {},
         archived = false,
@@ -27,6 +27,14 @@ class Order {
             paymentMethod: customerInfo.paymentMethod || "",
             specialRequest: customerInfo.specialRequest || "",
         };
+
+        this.allowedDeliveryAddresses = ["North", "East", "South", "West"]; // Sadece bu adreslere teslimat yapılabilir
+
+        if (orderType === "Lieferung" && !this.allowedDeliveryAddresses.includes(this.customerInfo.region)) {
+            console.log("Teslimat yapılamayan bir bölge seçildi:", this.customerInfo.region);
+            throw new Error("Seçili bölgeye teslimat yapılamıyor.");
+        }
+
         this.items = items.map(item => new Product(item)); // items içindeki her ürünü Product nesnesine dönüştürüyoruz
         console.log("Sipariş için ürünler yüklendi:", this.items.map(item => item.displayProductInfo()));
 
@@ -35,7 +43,7 @@ class Order {
             tax: orderSummary.tax || 0,
             discount: orderSummary.discount || 0,
             total: orderSummary.total || 0,
-            deliveryFee: orderSummary.deliveryFee || 0,
+            deliveryFee: orderType === "Lieferung" ? orderSummary.deliveryFee || 5 : 0, // Sadece eve teslimde teslimat ücreti
             grandTotal: orderSummary.total + (orderSummary.deliveryFee || 0),
         };
         this.orderStatus = orderStatus;
@@ -56,6 +64,7 @@ class Order {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
 
+        this.calculateTotal(); // Sipariş toplamını baştan hesaplayalım
         console.log("Yeni sipariş oluşturuldu:", this.displayOrderInfo());
     }
 
@@ -112,7 +121,7 @@ class Order {
         const subtotal = this.items.reduce((acc, item) => {
             const priceValue = item.prices.price || item.selectedPrice?.value || 0;
             const quantity = item.quantity || 1;
-            const deposit = this.orderType === "delivery" ? (item.deposit || 0) : 0; // Sadece teslimatta depozito ekle
+            const deposit = (this.orderType === "Lieferung" || this.orderType === "Pickup") ? (item.deposit || 0) : 0; // Sadece teslimat ve pickup'ta depozito ekle
             return acc + (priceValue * quantity) + deposit;
         }, 0);
         
@@ -160,19 +169,19 @@ class Order {
 
 // data1.js'den alınan ürünleri siparişe ekleme ve test işlemleri
 const order = new Order({
-    orderType: "delivery",
+    orderType: "Lieferung", // "Restorandan", "Pickup", "Lieferung"
     customerInfo: {
         name: "John",
         surname: "Doe",
         email: "john.doe@example.com",
         address: "1234 Elm Street",
         phone: "123-456-7890",
-        region: "North",
+        region: "North", // Teslimat yapılabilir bir bölge
         paymentMethod: "Credit Card",
         specialRequest: "Lütfen sıcak teslim edin",
     },
-    items: data1, // data1.js içerisindeki ürünleri burada kullanıyoruz
-    deliveryFee: 5,
+    items: data1,
+    orderSummary: { deliveryFee: 5 },
 });
 
 // Test amaçlı işlemler

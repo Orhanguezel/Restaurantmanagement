@@ -26,7 +26,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'l', 'b'],
             description: 'mit Salat und Tzatziki',
-            prices: { default: 7.5 },
+            prices: { Price: 7.5 },
             extras: { Hirtenkäse: 0.7 }
           },
           {
@@ -36,7 +36,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'l', 'b'],
             description: 'mit Salat und Spezial Sauce',
-            prices: { default: 6.5 },
+            prices: { Price: 6.5 },
             extras: { Hirtenkäse: 0.7 }
           },
           {
@@ -46,7 +46,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'b'],
             description: 'mit Salat und Tzatziki',
-            prices: { default: 9.5 },
+            prices: { Price: 9.5 },
             extras: { Hirtenkäse: 0.7 }
           },
           {
@@ -56,7 +56,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'l', 'b'],
             description: 'mit Pommes oder Reis und Tzatziki',
-            prices: { default: 9.5 },
+            prices: { Price: 9.5 },
             extras: { Hirtenkäse: 0.7 }
           },
           {
@@ -66,7 +66,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'b'],
             description: 'mit Pommes oder Reis, Salat und Tzatziki',
-            prices: { default: 11.0 },
+            prices: { Price: 11.0 },
             extras: { Hirtenkäse: 0.7 }
           },
           {
@@ -96,7 +96,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['g', 'f', 'b'],
             description: 'mit Sauce',
-            prices: { default: 6.5 }
+            prices: { Price: 6.5 }
           },
           {
             nr: '10',
@@ -105,7 +105,7 @@ module.exports = [
             zusatztoffe: [],
             allergene: [],
             description: '8 Stk. mit Pommes oder Reis, Salat und Tzatziki',
-            prices: { default: 10.0 }
+            prices: { Price: 10.0 }
           }
         ]
   
@@ -122,7 +122,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['f'],
             description: 'mit Sahnesauce und Gouda',
-            prices: { default: 10.0 }
+            prices: { Price: 10.0 }
           },
           {
             nr: '12',
@@ -131,7 +131,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['f'],
             description: 'mit Rahm, Gouda und Tomatensauce',
-            prices: { default: 11.5 }
+            prices: { Price: 11.5 }
           },
           {
             nr: '13',
@@ -140,7 +140,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['g'],
             description: 'mit Peperoni, Zwiebeln, Gouda Hirtenkäse & Sauce Hollandaise',
-            prices: { default: 11.5 }
+            prices: { Price: 11.5 }
           },
           {
             nr: '14',
@@ -149,7 +149,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['g'],
             description: 'mit Spinat, Broccoli, Pilze, Gouda und Sauce Hollandaise',
-            prices: { default: 11.5 }
+            prices: { Price: 11.5 }
           },
           {
             nr: '15',
@@ -158,7 +158,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['g', 'f', 'b'],
             description: 'mit Peperoni, Tomaten, Zwiebeln, Gouda und Sauce Hollandaise',
-            prices: { default: 11.5 }
+            prices: { Price: 11.5 }
           },
           {
             nr: '16',
@@ -167,7 +167,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['g', 'f', 'b'],
             description: 'mit Schinken, Ananas, Gouda und Sauce Hollandaise',
-            prices: { default: 11.5 }
+            prices: { Price: 11.5 }
           }
         ]
       },
@@ -183,7 +183,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'l', 'b'],
             description: 'mit Salat und Tzatziki eingerollt',
-            prices: { default: 7.5 }
+            prices: { Price: 7.5 }
           },
           {
             nr: '19',
@@ -192,7 +192,7 @@ module.exports = [
             zusatztoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'l', 'b'],
             description: 'mit Salat, Tzatziki und Dönerfleisch eingerollt',
-            prices: { default: 8.5 }
+            prices: { Price: 8.5 }
           },
           {
             nr: '20',
@@ -201,7 +201,7 @@ module.exports = [
             zusatztoffe: [1],
             allergene: ['a', 'g'],
             description: 'Teigtasche gefüllt mit Gehacktem, Gouda und Salatbeilage',
-            prices: { default: 9.5 }
+            prices: { Price: 9.5 }
           },
           {
             nr: '21',
@@ -210,7 +210,7 @@ module.exports = [
             zusatztoffe: [1],
             allergene: ['a', 'g'],
             description: 'Teigtasche gefüllt mit Spinat, Hirtenkäse, Gouda und Salatbeilage',
-            prices: { default: 9.5 }
+            prices: { Price: 9.5 }
           },
           {
             nr: '22',
@@ -219,7 +219,7 @@ module.exports = [
             zusatztoffe: [1, 2, 3, 4],
             allergene: ['a', 'g'],
             description: 'Teigtasche gefüllt mit Dönerfleisch, Tomaten, Zwiebeln, Gouda und Salatbeilage',
-            prices: { default: 10.0 }
+            prices: { Price: 10.0 }
           },
           {
             nr: '23',
@@ -228,7 +228,7 @@ module.exports = [
             zusatztoffe: [2, 3],
             allergene: ['a', 'c', 'g', 'i', 'o'],
             description: 'Teigtasche gefüllt mit Peperoni, Champignons, Spinat, Gouda, Sauce Hollandaise und Salatbeilage',
-            prices: { default: 10.0 }
+            prices: { Price: 10.0 }
           },
           {
             nr: '24',
@@ -237,7 +237,7 @@ module.exports = [
             zusatztoffe: [1],
             allergene: ['a', 'g'],
             description: 'Teigtasche gefüllt mit Knoblauchwurst, Gouda und Salatbeilage',
-            prices: { default: 9.5 }
+            prices: { Price: 9.5 }
           },
           {
             nr: '25',
@@ -246,7 +246,7 @@ module.exports = [
             zusatztoffe: [1],
             allergene: ['a', 'g'],
             description: 'Teigtasche gefüllt mit Hirtenkäse und Salatbeilage',
-            prices: { default: 9.5 }
+            prices: { Price: 9.5 }
           },
           {
             nr: '25.1',
@@ -255,7 +255,7 @@ module.exports = [
             zusatztoffe: [1, 2, 3, 4],
             allergene: ['a', 'g'],
             description: 'Teigtasche gefüllt mit Dönerfleisch, Zwiebeln, Hirtenkäse und Salatbeilage',
-            prices: { default: 10.5 }
+            prices: { Price: 10.5 }
           }
         ]
       },

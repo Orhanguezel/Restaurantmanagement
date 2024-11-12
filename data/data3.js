@@ -15,7 +15,7 @@ module.exports = [
               zusatztoffe: [2, 3, 4],
               allergene: ['a', 'g', 'f', 'l', 'b'],
               description: 'mit Salat und Tzatziki',
-              prices: { default: 4.0 }
+              prices: { Price: 4.0 }
             },
             {
               nr: '111',
@@ -24,7 +24,7 @@ module.exports = [
               zusatztoffe: [2, 3, 4],
               allergene: ['g', 'f', 'l', 'b'],
               description: 'mit Pommes',
-              prices: { default: 7.5 }
+              prices: { Price: 7.5 }
             },
             {
               nr: '112',
@@ -33,7 +33,7 @@ module.exports = [
               zusatztoffe: [2, 3, 4],
               allergene: ['a', 'g', 'f', 'l', 'b'],
               description: 'mit Pommes, Salat und Tzatziki',
-              prices: { default: 9.0 }
+              prices: { Price: 9.0 }
             }
           ]
         }

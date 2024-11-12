@@ -43,14 +43,13 @@ allDataFiles.forEach(dataFile => {
         // Alt kategoriler varsa ekleyin
         if (Array.isArray(categoryData.subcategories)) {
             categoryData.subcategories.forEach(subcatData => {
-                const subcategory = new Subcategory(subcatData.name); // Alt kategori oluştur
+                const subcategory = new Subcategory(subcatData.name, subcatData.description); // Alt kategori oluştur
                 console.log(`Alt kategori eklendi: ${subcatData.name} -> ${categoryData.name}`);
 
                 // Alt kategoriye ait ürünler varsa ekleyin
                 if (Array.isArray(subcatData.items)) {
                     subcatData.items.forEach(productData => {
-                        const product = new Product(productData);
-                        subcategory.addProduct(product); // Ürünü alt kategoriye ekle
+                        subcategory.addProduct(productData); // Ürünü alt kategoriye ekle
                     });
                 } else {
                     console.log(`Uyarı: ${subcatData.name} alt kategorisi için ürün bulunamadı.`);
