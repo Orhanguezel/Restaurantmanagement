@@ -14,9 +14,7 @@ export default function Navbar() {
             <ul class="navbar-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Menu</a></li>
-                <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button class="buy-now-btn">Buy Now</button></li>
             </ul>
             <div class="navbar-icons">
                 <i class="fas fa-user"></i>
@@ -28,9 +26,7 @@ export default function Navbar() {
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Menu</a></li>
-                <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button class="buy-now-btn">Buy Now</button></li>
             </ul>
         </div>
     `;

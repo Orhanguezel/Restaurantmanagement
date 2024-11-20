@@ -44,8 +44,8 @@ allDataFiles.forEach((dataFile) => {
           subcatData.description
         );
 
-        if (Array.isArray(subcatData.items)) {
-          subcatData.items.forEach((productData) => {
+        if (Array.isArray(subcatData.products)) {
+          subcatData.products.forEach((productData) => {
             subcategory.addProduct(productData);
           });
         } else {

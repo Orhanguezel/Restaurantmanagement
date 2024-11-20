@@ -22,9 +22,9 @@ class Category {
       subcategoryData.description || ""
     );
 
-    // Eğer items tanımlıysa ve bir dizi ise, ürünleri alt kategoriye ekleyelim
-    if (Array.isArray(subcategoryData.items)) {
-      subcategoryData.items.forEach((itemData) => {
+    // Eğer products tanımlıysa ve bir dizi ise, ürünleri alt kategoriye ekleyelim
+    if (Array.isArray(subcategoryData.products)) {
+      subcategoryData.products.forEach((itemData) => {
         subcategory.addProduct(itemData); // Ürünleri alt kategoriye ekle
       });
     }

@@ -1,16 +1,15 @@
-const Menu = require("./Menu");
-const Category = require("./Category");
-const Subcategory = require("./Subcategory");
-// const Product = require('./Product');
-const Order = require("./Order");
+import Menu from "./Menu.js";
+import Category from "./Category.js";
+import Subcategory from "./Subcategory.js";
+import Order from "./Order.js";
 
 // Data dosyalarını import edelim
-const data1 = require("../data/data1");
-const data2 = require("../data/data2");
-const data3 = require("../data/data3");
-const data4 = require("../data/data4");
-const data5 = require("../data/data5");
-const data6 = require("../data/data6");
+import data1 from "../data/data1.js";
+import data2 from "../data/data2.js";
+import data3 from "../data/data3.js";
+import data4 from "../data/data4.js";
+import data5 from "../data/data5.js";
+import data6 from "../data/data6.js";
 
 // Menü ve kategorileri oluşturalım
 const menu = new Menu();
@@ -41,4 +40,5 @@ menu.addCategory(foodCategory);
 const order = new Order();
 data1.forEach((productData) => order.addItem(productData));
 
+// Sipariş toplamını gösterelim
 console.log("Toplam sipariş tutarı:", order.getTotal().toFixed(2), "€");

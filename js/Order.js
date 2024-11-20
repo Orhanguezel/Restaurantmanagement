@@ -4,7 +4,7 @@ import data1 from "../data/data1.js"; // data1.js dosyasındaki ürünleri dahil
 class Order {
   constructor({
     customerInfo = {},
-    items = [],
+    products = [],
     orderSummary = {},
     orderStatus = "Eingehende Bestellungen",
     orderType = "Restorandan", // "Restorandan", "Pickup", "Lieferung"
@@ -41,10 +41,10 @@ class Order {
       throw new Error("Seçili bölgeye teslimat yapılamıyor.");
     }
 
-    this.items = items.map((item) => new Product(item)); // items içindeki her ürünü Product nesnesine dönüştürüyoruz
+    this.products = products.map((item) => new Product(item)); // products içindeki her ürünü Product nesnesine dönüştürüyoruz
     console.log(
       "Sipariş için ürünler yüklendi:",
-      this.items.map((item) => item.displayProductInfo())
+      this.products.map((item) => item.displayProductInfo())
     );
 
     this.orderSummary = {
@@ -109,7 +109,7 @@ class Order {
   addItem(item) {
     console.log("Siparişe yeni ürün ekleniyor...");
     const newItem = new Product(item); // Yeni ürünü Product nesnesi olarak ekleyelim
-    this.items.push(newItem);
+    this.products.push(newItem);
     this.calculateTotal();
     this.updateTimestamp();
     console.log("Yeni ürün eklendi:", newItem.displayProductInfo());
@@ -119,7 +119,7 @@ class Order {
   // Ürünleri siparişten çıkar
   removeItem(nr) {
     console.log(`Siparişten ürün çıkarılıyor: Nr -> ${nr}`);
-    this.items = this.items.filter((item) => item.nr !== nr);
+    this.products = this.products.filter((item) => item.nr !== nr);
     this.calculateTotal();
     this.updateTimestamp();
     console.log(
@@ -131,7 +131,7 @@ class Order {
   // Ekstra maliyetleri ve vergiyi hesaplayarak toplam güncelleme
   calculateTotal() {
     console.log("Toplam hesaplanıyor...");
-    const subtotal = this.items.reduce((acc, item) => {
+    const subtotal = this.products.reduce((acc, item) => {
       const priceValue = item.prices.price || item.selectedPrice?.value || 0;
       const quantity = item.quantity || 1;
       const deposit =
