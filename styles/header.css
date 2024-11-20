@@ -1,0 +1,12 @@
+.header {
+    background-color: var(--header-background);
+    color: var(--background-color);
+    text-align: center;
+    padding: var(--padding);
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--font-family-secondary);
+}
