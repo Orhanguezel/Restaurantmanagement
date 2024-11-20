@@ -1,4 +1,4 @@
-module.exports = [
+const data2 = [
     {
         name: "Beilagen",
         description: "Unsere Beilagen ergänzen jedes Gericht perfekt.",
@@ -598,3 +598,5 @@ module.exports = [
         ]
     }
 ];
+
+export default data2;

@@ -1,10 +1,9 @@
-// Tüm data dosyalarını içeri aktar
-const data1 = require("../data/data1");
-const data2 = require("../data/data2");
-const data3 = require("../data/data3");
-const data4 = require("../data/data4");
-const data5 = require("../data/data5");
-const data6 = require("../data/data6");
+import data1 from "../data/data1.js";
+import data2 from "../data/data2.js";
+import data3 from "../data/data3.js";
+import data4 from "../data/data4.js";
+import data5 from "../data/data5.js";
+import data6 from "../data/data6.js";
 
 // Tüm data dosyalarını birleştirin
 const allDataFiles = [
@@ -46,68 +45,52 @@ class Product {
     console.log(`Ürün oluşturuldu: ${this.name} (${this.nr})`);
   }
 
-  // Ürün açıklaması
   getDescription() {
     return `${this.name} (${this.type}) - ${
       this.prices.default ? this.prices.default.toFixed(2) : "Fiyat bilgisi yok"
     } €: ${this.description}`;
   }
 
-  // Fiyat bilgilerini göster
   getPrices() {
-    if (Object.keys(this.prices).length === 0)
-      return "Fiyat bilgisi mevcut değil.";
+    if (Object.keys(this.prices).length === 0) return "Fiyat bilgisi mevcut değil.";
     return Object.entries(this.prices)
       .map(([key, value]) => `${key}: ${value.toFixed(2)} €`)
       .join(", ");
   }
 
-  // Stok durumunu kontrol et
   checkStock() {
     return this.stock > 0 ? `Auf Lager: ${this.stock}` : "Nicht auf Lager";
   }
 
-  // Ekstra bilgilerini göster
   getExtras() {
     if (Object.keys(this.extras).length === 0) return "Keine Extras verfügbar.";
-    return Object.entries(this.extras)
+    return Array.from(this.extras)
       .map(([key, value]) => `${key}: ${value.toFixed(2)} €`)
       .join(", ");
   }
 
-  // Depozito bilgisi
   getDeposit() {
-    return this.deposit !== null
-      ? `Pfand: ${this.deposit.toFixed(2)} €`
-      : "Kein Pfand";
+    return this.deposit !== null ? `Pfand: ${this.deposit.toFixed(2)} €` : "Kein Pfand";
   }
 
-  // Katkı maddelerini göster
   getZusatzstoffe() {
-    return this.zusatzstoffe.length > 0
-      ? this.zusatzstoffe.join(", ")
-      : "Keine Zusatzstoffe";
+    return this.zusatzstoffe.length > 0 ? this.zusatzstoffe.join(", ") : "Keine Zusatzstoffe";
   }
 
-  // Alerjen bilgilerini göster
   getAllergene() {
-    return this.allergene.length > 0
-      ? this.allergene.join(", ")
-      : "Keine Allergene";
+    return this.allergene.length > 0 ? this.allergene.join(", ") : "Keine Allergene";
   }
 
-  // Ekstra ekle methodu
   addExtra(key, value) {
-    if (!this.extras) this.extras = {}; // Ekstralar yoksa boş bir obje olarak tanımlar
-    this.extras[key] = value;
-    this.updatedAt = new Date(); // Güncelleme tarihini yenile
+    if (!this.extras) this.extras = new Map();
+    this.extras.set(key, value);
+    this.updatedAt = new Date();
     console.log(`Ekstra eklendi: ${key} -> ${value}`);
   }
 
-  // Var olan bir ekstrayı güncelle
   updateExtra(key, value) {
-    if (this.extras && this.extras[key] !== undefined) {
-      this.extras[key] = value;
+    if (this.extras && this.extras.has(key)) {
+      this.extras.set(key, value);
       this.updatedAt = new Date();
       console.log(`Ekstra güncellendi: ${key} -> ${value}`);
     } else {
@@ -115,10 +98,9 @@ class Product {
     }
   }
 
-  // Ekstra sil
   removeExtra(key) {
-    if (this.extras && this.extras[key] !== undefined) {
-      delete this.extras[key];
+    if (this.extras && this.extras.has(key)) {
+      this.extras.delete(key);
       this.updatedAt = new Date();
       console.log(`Ekstra kaldırıldı: ${key}`);
     } else {
@@ -126,7 +108,6 @@ class Product {
     }
   }
 
-  // Ürün bilgilerini göster
   displayProductInfo() {
     return `
         Produktnummer: ${this.nr}
@@ -136,21 +117,16 @@ class Product {
           this.allergene.length ? this.allergene.join(", ") : "Keine Allergene"
         }
         Zusatzstoffe: ${
-          this.zusatzstoffe.length
-            ? this.zusatzstoffe.join(", ")
-            : "Keine Zusatzstoffe"
+          this.zusatzstoffe.length ? this.zusatzstoffe.join(", ") : "Keine Zusatzstoffe"
         }
         Beschreibung: ${this.description}
         Preise: ${Object.entries(this.prices)
           .map(([size, price]) => `${size}: ${price} €`)
           .join(", ")}
-        Extras: ${Array.from(this.extras)
-          .map(([key, value]) => `${key}: ${value} €`)
-          .join(", ")}
+        Extras: ${this.getExtras()}
         `;
   }
 
-  // Fiyat güncelle
   updatePrice(size, newPrice) {
     if (this.prices && this.prices[size] !== undefined) {
       this.prices[size] = newPrice;
@@ -161,7 +137,6 @@ class Product {
     }
   }
 
-  // Stok güncelle
   updateStock(amount) {
     this.stock += amount;
     this.updatedAt = new Date();
@@ -170,12 +145,10 @@ class Product {
 }
 
 // Tüm ürünleri `Product` nesnelerine dönüştürerek yükleyin
-const loadedProducts = allDataFiles.map(
-  (productData) => new Product(productData)
-);
+const loadedProducts = allDataFiles.map((productData) => new Product(productData));
 console.log(
   "Yüklenen ürünler:",
   loadedProducts.map((product) => product.displayProductInfo())
 );
 
-module.exports = Product;
+export default Product;

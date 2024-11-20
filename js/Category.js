@@ -1,5 +1,5 @@
-const Subcategory = require("../Subcategory");
-const Product = require("../Product");
+import Subcategory from "./Subcategory.js";
+import Product from "./Product.js";
 
 class Category {
   constructor(name, description = "") {
@@ -67,4 +67,4 @@ class Category {
   }
 }
 
-module.exports = Category;
+export default Category;

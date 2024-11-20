@@ -1,4 +1,4 @@
-module.exports = [
+const data4 = [
     {
       name: 'Salate und Saucen',
       description: 'Unsere Hauptgerichte sind herzhaft und sättigend, perfekt für den großen Hunger.',
@@ -200,3 +200,5 @@ module.exports = [
       ]
     }
   ];
+
+export default data4;

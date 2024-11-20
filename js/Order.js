@@ -1,5 +1,5 @@
-const Product = require("./Product");
-const data1 = require("../data/data1"); // data1.js dosyasındaki ürünleri dahil ediyoruz
+import Product from "./Product.js";
+import data1 from "../data/data1.js"; // data1.js dosyasındaki ürünleri dahil ediyoruz
 
 class Order {
   constructor({
@@ -185,31 +185,4 @@ class Order {
   }
 }
 
-// data1.js'den alınan ürünleri siparişe ekleme ve test işlemleri
-const order = new Order({
-  orderType: "Lieferung", // "Restorandan", "Pickup", "Lieferung"
-  customerInfo: {
-    name: "John",
-    surname: "Doe",
-    email: "john.doe@example.com",
-    address: "1234 Elm Street",
-    phone: "123-456-7890",
-    region: "North", // Teslimat yapılabilir bir bölge
-    paymentMethod: "Credit Card",
-    specialRequest: "Lütfen sıcak teslim edin",
-  },
-  items: data1,
-  orderSummary: { deliveryFee: 5 },
-});
-
-// Test amaçlı işlemler
-order.updateCustomerInfo({ name: "Jane", email: "jane.doe@example.com" });
-order.updateStatus("Bestellungen in Vorbereitung");
-order.addItem(data1[0]);
-order.removeItem("001");
-order.updatePaymentDetails({ isPaid: true });
-order.updateDeliveryDetails({ deliveryDriver: "Michael" });
-
-console.log("Sipariş Bilgileri:", order.displayOrderInfo());
-
-module.exports = Order;
+export default Order;

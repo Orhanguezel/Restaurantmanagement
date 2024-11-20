@@ -1,5 +1,4 @@
-
-module.exports = [
+const data1 = [
 {   
     name: 'Hauptgerichte',
     description: 'Unsere Hauptgerichte sind herzhaft und sättigend, perfekt für den großen Hunger.',
@@ -632,3 +631,5 @@ module.exports = [
     ]
   }
 ];
+
+export default data1;

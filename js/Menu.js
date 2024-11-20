@@ -1,16 +1,14 @@
-const Category = require("./Category");
-const Subcategory = require("./Subcategory");
-const Product = require("./Product");
+import Category from "./Category.js";
+import Subcategory from "./Subcategory.js";
+import Product from "./Product.js";
 
-// Tüm data dosyalarını içeri aktar
-const data1 = require("../data/data1");
-const data2 = require("../data/data2");
-const data3 = require("../data/data3");
-const data4 = require("../data/data4");
-const data5 = require("../data/data5");
-const data6 = require("../data/data6");
+import data1 from "../data/data1.js";
+import data2 from "../data/data2.js";
+import data3 from "../data/data3.js";
+import data4 from "../data/data4.js";
+import data5 from "../data/data5.js";
+import data6 from "../data/data6.js";
 
-// data dosyalarını bir liste olarak toplayın
 const allDataFiles = [data1, data2, data3, data4, data5, data6];
 
 class Menu {
@@ -19,13 +17,11 @@ class Menu {
     console.log("Yeni bir Menü nesnesi oluşturuldu:", this);
   }
 
-  // Menüye kategori ekler
   addCategory(category) {
     this.categories.push(category);
     console.log(`Kategori eklendi: ${category.name}`);
   }
 
-  // Menü bilgilerini döndürür
   getMenuInfo() {
     return this.categories
       .map((category) => category.getCategoryInfo())
@@ -33,30 +29,24 @@ class Menu {
   }
 }
 
-// Menü nesnesi oluştur
-const menu = new Menu();
+// Menu sınıfını ve bir örneğini dışa aktar
+const menuInstance = new Menu();
 
-// Her bir data dosyasından gelen kategorileri ekleyin
 allDataFiles.forEach((dataFile) => {
   dataFile.forEach((categoryData) => {
-    const category = new Category(categoryData.name); // Ana kategori oluştur
+    const category = new Category(categoryData.name);
     console.log(`Ana kategori eklendi: ${categoryData.name}`);
 
-    // Alt kategoriler varsa ekleyin
     if (Array.isArray(categoryData.subcategories)) {
       categoryData.subcategories.forEach((subcatData) => {
         const subcategory = new Subcategory(
           subcatData.name,
           subcatData.description
-        ); // Alt kategori oluştur
-        console.log(
-          `Alt kategori eklendi: ${subcatData.name} -> ${categoryData.name}`
         );
 
-        // Alt kategoriye ait ürünler varsa ekleyin
         if (Array.isArray(subcatData.items)) {
           subcatData.items.forEach((productData) => {
-            subcategory.addProduct(productData); // Ürünü alt kategoriye ekle
+            subcategory.addProduct(productData);
           });
         } else {
           console.log(
@@ -64,7 +54,7 @@ allDataFiles.forEach((dataFile) => {
           );
         }
 
-        category.addSubcategory(subcategory); // Alt kategoriyi ana kategoriye ekleyin
+        category.addSubcategory(subcategory);
       });
     } else {
       console.log(
@@ -72,11 +62,10 @@ allDataFiles.forEach((dataFile) => {
       );
     }
 
-    menu.addCategory(category); // Ana kategoriyi menüye ekleyin
+    menuInstance.addCategory(category);
   });
 });
 
-// Menü bilgisini göster
-console.log("Mevcut Menü Bilgisi:\n", menu.getMenuInfo());
+console.log("Mevcut Menü Bilgisi:\n", menuInstance.getMenuInfo());
 
-module.exports = Menu;
+export { Menu, menuInstance as default };

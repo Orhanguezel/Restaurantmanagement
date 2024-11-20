@@ -1,4 +1,4 @@
-module.exports = [
+const data5 = [
     {
       name: 'Getränke',
       description: 'Unsere Auswahl an Getränken.',
@@ -202,3 +202,5 @@ module.exports = [
       ]
     }
   ];
+
+export default data5;

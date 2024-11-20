@@ -1,4 +1,4 @@
-module.exports = [
+const data6 = [
   {
       name: "Sparmenus",
       description: "Unsere Sparmenus bieten eine großartige Kombination aus Geschmack und Preis.",
@@ -134,3 +134,7 @@ module.exports = [
       ]
   }
 ];
+
+export default data6;
+
+

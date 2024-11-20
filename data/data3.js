@@ -1,4 +1,4 @@
-module.exports = [
+const data3= [
     {
       name: 'Für Kinder',
       description: 'Unsere Hauptgerichte sind herzhaft und sättigend, perfekt für den großen Hunger.',
@@ -40,3 +40,5 @@ module.exports = [
       ]
     }
   ];
+
+  export default data3;

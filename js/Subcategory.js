@@ -1,4 +1,4 @@
-const Product = require('./Product');
+import Product from './Product.js';
 
 class Subcategory {
     constructor(name, description = "") {
@@ -32,4 +32,4 @@ class Subcategory {
     }
 }
 
-module.exports = Subcategory;
+export default Subcategory;

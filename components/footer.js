@@ -1,7 +1,7 @@
 export default function Footer() {
     const footer = document.createElement('footer');
     footer.innerHTML = `
-        <p>&copy; 2024 Cookery. All rights reserved.</p>
+        <p>&copy; 2024 Pizzeria La Dolce Vita. Alle Rechte vorbehalten.</p>
     `;
     footer.classList.add('footer');
 

@@ -1,14 +1,16 @@
 :root {
-    --primary-color: #6cc1a3;
-    --secondary-color: #f7f9f9;
-    --accent-color: #ff6f61;
-    --text-color: #333;
-    --background-color: #fff;
-    --header-background: #6cc1a3;
-    --link-color: #0066cc;
+    --primary-color: #D12727; /* Kırmızı ton */
+    --secondary-color: #FFB100; /* Sarı ton */
+    --accent-color: #FF6F61; /* Açık kırmızı */
+    --text-color: #ffffff; /* Beyaz */
+    --background-color: #FFF5E5; /* Açık sarı arka plan */
+    --header-background: #D12727; /* Başlık için kırmızı */
+    --link-color: #FFB100; /* Sarı link rengi */
+    --button-background: #FFB100; /* Buton rengi */
+    --button-hover-background: #FFA500; /* Buton hover rengi */
+    --card-background: #FFF5E5; /* Kart arka planı */
     --font-family-primary: 'Roboto', sans-serif;
     --font-family-secondary: 'Open Sans', sans-serif;
-    --max-width: 1200px;
     --padding: 1rem;
     --margin: 1rem;
     --border-radius: 8px;
