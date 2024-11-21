@@ -2,11 +2,12 @@ const data6 = [
   {
       name: "Sparmenus",
       description: "Unsere Sparmenus bieten eine großartige Kombination aus Geschmack und Preis.",
+      images: ["./assets/menu/25.jpg", "./assets/menu/26.jpg"],
       subcategories: [
           {
               name: "Sparmenu",
               description: "Alle Dosen Getränke + 0,25€ Pfand",
-              images: ["/assets/menu/25.jpg", "/assets/menu/26.jpg"],
+              images: ["./assets/menu/25.jpg", "./assets/menu/26.jpg"],
               products: [
                   {
                       nr: "142",
@@ -17,7 +18,7 @@ const data6 = [
                       description: "Döner Teller komplett + Softgetränk 0,33 L",
                       prices: { Price: 12.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/45.jpg"
+                      image: ["./assets/menu/45.jpg"]
                   },
                   {
                       nr: "143",
@@ -28,7 +29,7 @@ const data6 = [
                       description: "Döner überbacken + Pommes & Salat + Softgetränk 0,33 L",
                       prices: { Price: 12.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/46.jpg"
+                      image: ["./assets/menu/46.jpg"]
                   },
                   {
                       nr: "144",
@@ -39,7 +40,7 @@ const data6 = [
                       description: "Currywurst + Pommes + Softgetränk 0,33 L",
                       prices: { Price: 9.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/47.jpg"
+                      image: ["./assets/menu/47.jpg"]
                   },
                   {
                       nr: "145",
@@ -50,7 +51,7 @@ const data6 = [
                       description: "Pizza nach Wahl + Softgetränk 0,33 L",
                       prices: { Price: 12.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/48.jpg"
+                      image: ["./assets/menu/48.jpg"]
                   },
                   {
                       nr: "146",
@@ -61,7 +62,7 @@ const data6 = [
                       description: "Schnitzel nach Wahl mit Pommes & Salat + Softgetränk 0,33 L",
                       prices: { Price: 12.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/49.jpg"
+                      image: ["./assets/menu/49.jpg"]
                   },
                   {
                       nr: "147",
@@ -72,7 +73,7 @@ const data6 = [
                       description: "Lahmacun komplett + Softgetränk 0,33 L",
                       prices: { Price: 9.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/50.jpg"
+                      image: ["./assets/menu/50.jpg"]
                   },
                   {
                       nr: "148",
@@ -83,7 +84,7 @@ const data6 = [
                       description: "Döner Tasche komplett mit Pommes + Softgetränk 0,33 L",
                       prices: { Price: 9.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/51.jpg"
+                      image: ["./assets/menu/51.jpg"]
                   },
                   {
                       nr: "149",
@@ -94,7 +95,7 @@ const data6 = [
                       description: "Pide nach Wahl + Softgetränk 0,33 L",
                       prices: { Price: 11.00 },
                       deposit: 0.25,
-                      image: "/assets/menu/52.jpg"
+                      image: ["./assets/menu/52.jpg"]
                   },
                   {
                       nr: "150",
@@ -105,7 +106,7 @@ const data6 = [
                       description: "Hamburger + Pommes + Softgetränk 0,33 L",
                       prices: { Price: 9.00 },
                       deposit: 0.25,
-                      image: "/assets/menu/53.jpg"
+                      image: ["./assets/menu/53.jpg"]
                   },
                   {
                       nr: "151",
@@ -116,7 +117,7 @@ const data6 = [
                       description: "Falafel Teller 7 Stk. mit Pommes & Salat + Softgetränk 0,33 L",
                       prices: { Price: 11.00 },
                       deposit: 0.25,
-                      image: "/assets/menu/54.jpg"
+                      image: ["./assets/menu/54.jpg"]
                   },
                   {
                       nr: "152",
@@ -127,7 +128,7 @@ const data6 = [
                       description: "Chicken Nuggets 6 Stk. mit Pommes + Softgetränk 0,33 L",
                       prices: { Price: 9.50 },
                       deposit: 0.25,
-                      image: "/assets/menu/55.jpg"
+                      image: ["./assets/menu/55.jpg"]
                   }
               ]
           }

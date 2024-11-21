@@ -6,7 +6,7 @@
   width: 100%;
 }
 body {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-secondary);
   margin: 0;
   padding: 0;
   background-color: var(--secondary-color);

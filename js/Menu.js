@@ -29,19 +29,19 @@ class Menu {
   }
 }
 
-// Menu sınıfını ve bir örneğini dışa aktar
 const menuInstance = new Menu();
 
 allDataFiles.forEach((dataFile) => {
   dataFile.forEach((categoryData) => {
-    const category = new Category(categoryData.name);
+    const category = new Category(categoryData.name, categoryData.description);
     console.log(`Ana kategori eklendi: ${categoryData.name}`);
 
     if (Array.isArray(categoryData.subcategories)) {
       categoryData.subcategories.forEach((subcatData) => {
         const subcategory = new Subcategory(
           subcatData.name,
-          subcatData.description
+          subcatData.description,
+          subcatData.images || [] // Resimleri ekliyoruz
         );
 
         if (Array.isArray(subcatData.products)) {

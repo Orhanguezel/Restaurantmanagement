@@ -29,6 +29,7 @@ class Product {
         deposit = 0,
         createdAt = new Date(),
         updatedAt = new Date(),
+        image = [] // Resim özelliği eklendi
     }) {
         this.nr = nr || "Bilinmiyor"; // Ürün numarası
         this.type = type || "Bilinmiyor"; // Ürün türü
@@ -43,7 +44,9 @@ class Product {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
 
-        console.log(`Ürün oluşturuldu: ${this.name} (${this.nr})`);
+        // `images` özelliğini bir diziye dönüştür
+        this.image = Array.isArray(image) ? image : [];
+        console.log(`Ürün oluşturuldu: ${this.name} (${this.nr}), Resimler: ${this.images}`);
     }
 
     getDescription() {
@@ -107,6 +110,7 @@ class Product {
           .map(([size, price]) => `${size}: ${price} €`)
           .join(", ")}
         Extras: ${this.getExtras()}
+        Images: ${this.image.length > 0 ? this.image.join(", ") : "No images"}
         `;
     }
 }

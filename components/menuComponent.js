@@ -63,28 +63,38 @@ export default function MenuComponent() {
       productsGrid.innerHTML = `<p>No subcategories available</p>`;
       return;
     }
-  
+
+    console.log(`Loading subcategories for category: ${category.name}`);
+    console.log("Subcategories:", category.subcategories);
+
     productsGrid.innerHTML = `
       <div class="subcategory-list">
         <h2>${category.name}</h2>
         ${category.subcategories
           .map(
-            (subcat) => `
-          <div class="subcategory-item" data-subcategory="${subcat.name}">
-            <div class="subcategory-images">
-              ${(subcat.images || [])
-                .map((img) => `<img src="${img}" alt="${subcat.name} image" />`)
-                .join("")}
-            </div>
-            <h3>${subcat.name}</h3>
-            <p>${subcat.description || "No description available"}</p>
-          </div>
-        `
+            (subcat) => {
+              const firstImage =
+                subcat.images && subcat.images.length > 0 ? subcat.images[0] : null;
+
+              return `
+                <div class="subcategory-item" data-subcategory="${subcat.name}">
+                  <div class="subcategory-images">
+                    ${
+                      firstImage
+                        ? `<img src="${resolveImagePath(firstImage)}" alt="${subcat.name} image" class="subcategory-image" style="width: 150px; height: auto; margin-right: 10px;"/>`
+                        : `<p>No images available</p>`
+                    }
+                  </div>
+                  <h3>${subcat.name}</h3>
+                  <p>${subcat.description || "No description available"}</p>
+                </div>
+              `;
+            }
           )
           .join("")}
       </div>
     `;
-  
+
     const subcategoryElements = productsGrid.querySelectorAll(".subcategory-item");
     subcategoryElements.forEach((element) => {
       element.addEventListener("click", (e) => {
@@ -92,7 +102,7 @@ export default function MenuComponent() {
         const subcategory = category.subcategories.find(
           (subcat) => subcat.name === subcategoryName
         );
-  
+
         if (subcategory) {
           console.log("Selected Subcategory:", subcategory);
           loadProducts(subcategory.products || []);
@@ -100,30 +110,56 @@ export default function MenuComponent() {
       });
     });
   }
-  
 
   // Ürünleri yükleme
   function loadProducts(products) {
     if (!products || products.length === 0) {
-      productsGrid.innerHTML = `<p>No products available</p>`;
-      return;
+        productsGrid.innerHTML = `<p>No products available</p>`;
+        return;
     }
 
     productsGrid.innerHTML = `
-      <div class="products-list">
-        ${products
-          .map(
-            (item) => `
-          <div class="product-card">
-            <h4>${item.name}</h4>
-            <p>${item.description || "No description provided"}</p>
-            <p><strong>${item.prices?.Price ? `${item.prices.Price} €` : "Price not available"}</strong></p>
-          </div>
-        `
-          )
-          .join("")}
-      </div>
+        <div class="products-list">
+            ${products
+                .map(
+                    (item) => {
+                        // Resim kontrolü - Dizi veya string durumuna göre
+                        let productImage = null;
+                        if (Array.isArray(item.image) && item.image.length > 0) {
+                            productImage = item.image[0]; // İlk resmi al
+                        } else if (typeof item.image === "string" && item.image.length > 0) {
+                            productImage = item.image; // Direkt string al
+                        }
+
+                        console.log(`Processing product: ${item.name}`);
+                        console.log("Product image:", productImage);
+
+                        return `
+                            <div class="product-card">
+                                ${
+                                    productImage
+                                        ? `<img src="${resolveImagePath(productImage)}" alt="${item.name} image" class="product-image" style="width: 100px; height: auto; margin-bottom: 10px;"/>`
+                                        : ""
+                                }
+                                <h4>${item.name}</h4>
+                                <p>${item.description || "No description provided"}</p>
+                                <p><strong>${item.prices?.Price ? `${item.prices.Price} €` : "Price not available"}</strong></p>
+                            </div>
+                        `;
+                    }
+                )
+                .join("")}
+        </div>
     `;
+}
+
+
+  // Resim yollarını çözmek için dinamik bir fonksiyon
+  function resolveImagePath(path) {
+    if (path.startsWith("/")) {
+      return `${window.location.origin}${path}`; // Tam URL oluştur
+    }
+    return path; // Göreceli yol döndür
   }
 
   // İlk kategori ve alt kategoriyi otomatik olarak yükleme

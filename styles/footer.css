@@ -3,7 +3,7 @@
     color: var(--background-color);
     text-align: center;
     padding: var(--padding);
-    position: relative;
+    position: sticky;
     bottom: 0;
     width: 100%;
     box-shadow: var(--box-shadow);

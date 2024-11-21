@@ -6,7 +6,7 @@ export default function Navbar() {
         <div class="navbar-container">
             <div class="navbar-logo">
                 <img src="./assets/logo/logo.png" alt="Pizzeria La Dolce Vita Logo" />
-                <span>Pizzeria La Dolce Vita</span>
+                <span>La Dolce Vita</span>
             </div>
             <div class="hamburger-menu">
                 <i class="fas fa-bars"></i>

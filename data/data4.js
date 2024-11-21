@@ -6,7 +6,7 @@ const data4 = [
         {
           name: 'Salate',
           description: 'Frische Salate und köstliche Saucen, die jedes Gericht ergänzen.',
-          images: ['/assets/menu/34.jpg', '/assets/menu/35.jpg'],
+          images: ['./assets/menu/34.jpg', './assets/menu/35.jpg'],
           products: [
             {
               nr: '113',
@@ -103,7 +103,7 @@ const data4 = [
         {
           name: 'Saucen',
           description: 'Sie können zusätzlich zu allen Gerichten bestellt werden',
-          images: ['/assets/menu/13.jpg', '/assets/menu/12.jpg'],
+          images: ['./assets/menu/13.jpg', './assets/menu/12.jpg'],
           products: [
             {
               nr: '86',

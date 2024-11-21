@@ -1,35 +1,41 @@
-import Product from './Product.js';
+import Product from "./Product.js";
 
 class Subcategory {
-    constructor(name, description = "") {
-        this.name = name;
-        this.description = description;
-        this.products = [];
-        console.log(`Yeni bir Subcategory nesnesi oluşturuldu: ${this.name}`);
+  constructor(name, description = "", images = []) {
+    this.name = name;
+    this.description = description;
+    this.images = images; // Resimleri ekledik
+    this.products = [];
+    console.log(
+      `Yeni bir Subcategory nesnesi oluşturuldu: ${this.name}, Resimler: ${
+        this.images.length > 0 ? this.images.join(", ") : "No images"
+      }`
+    );
+  }
+
+  addProduct(productData) {
+    if (!productData || !productData.name) {
+      console.log("Hatalı ürün verisi. `name` alanı gereklidir.");
+      return;
     }
 
-    // Alt kategoriye ürün ekler, gelen ürünleri Product nesnesi olarak oluşturur
-    addProduct(productData) {
-        if (!productData || !productData.name) {
-            console.log("Hatalı ürün verisi. `name` alanı gereklidir.");
-            return;
-        }
+    const product = new Product(productData);
+    this.products.push(product);
+    console.log(`Ürün eklendi: ${product.name} -> ${this.name}`);
+  }
 
-        const product = new Product(productData); // Ürün verisini Product nesnesine dönüştürüyoruz
-        this.products.push(product);
-        console.log(`Ürün eklendi: ${product.name} -> ${this.name}`);
-    }
+  getSubcategoryInfo() {
+    const productsInfo = this.products
+      .map((prod) => prod.displayProductInfo())
+      .join("\n");
 
-    // Alt kategori bilgilerini döndürür
-    getSubcategoryInfo() {
-        const productsInfo = this.products.map(prod => prod.displayProductInfo()).join("\n");
-
-        return `
+    return `
         Subcategory: ${this.name}
         Description: ${this.description}
+        Images: ${this.images.length > 0 ? this.images.join(", ") : "No images available"}
         ${productsInfo ? "Products:\n" + productsInfo : "No products available"}
         `;
-    }
+  }
 }
 
 export default Subcategory;

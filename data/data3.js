@@ -6,7 +6,7 @@ const data3= [
         {
           name: 'Für unsere kleine Freunde',
           description: 'Unsere Kindergerichte sind speziell auf die Bedürfnisse der kleinen Gäste abgestimmt.',
-          images: ['/assets/menu/32.jpg', '/assets/menu/31.jpg'],
+          images: ['./assets/menu/32.jpg', './assets/menu/31.jpg'],
           products: [
             {
               nr: '110',

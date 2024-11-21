@@ -6,7 +6,7 @@ const data2 = [
           {
             name: "Pizzabrötchen 6 Stk",
             description: "Frisch aus dem Steinofen.",
-            images: ["/assets/menu/15.jpg", "/assets/menu/17.jpg"],
+            images: ["./assets/menu/15.jpg", "./assets/menu/17.jpg"],
             products: [
               {
                 nr: "55",
@@ -199,7 +199,7 @@ const data2 = [
           {
             name: "Schnitzelgerichte",
             description: "Alle Schnitzelgerichte werden mit Pommes & Salat serviert.",
-            images: ["/assets/menu/18.jpg", "/assets/menu/19.jpg"],
+            images: ["./assets/menu/18.jpg", "./assets/menu/19.jpg"],
             products: [
               {
                 nr: "62",
@@ -314,7 +314,7 @@ const data2 = [
           {
             name: "Wurst & Pommes",
             description: "Klassische Würstchen mit knusprigen Pommes.",
-            images: ["/assets/menu/23.jpg", "/assets/menu/24.jpg"],
+            images: ["./assets/menu/23.jpg", "./assets/menu/24.jpg"],
             products: [
               {
                 nr: "74",
@@ -447,7 +447,7 @@ const data2 = [
           {
             name: "Pasta al Forno",
             description: "Hausgemachte Pasta frisch aus dem Ofen.",
-            images: ["/assets/menu/25.jpg", "/assets/menu/26.jpg"],
+            images: ["./assets/menu/25.jpg", "./assets/menu/26.jpg"],
             products: [
               {
                 nr: "91",
@@ -504,7 +504,7 @@ const data2 = [
           {
             name: "Tortellini",
             description: "Frisch und lecker.",
-            images: ["/assets/menu/27.jpg", "/assets/menu/28.jpg"],
+            images: ["./assets/menu/27.jpg", "./assets/menu/28.jpg"],
             products: [
               {
                 nr: "100",
@@ -551,7 +551,7 @@ const data2 = [
           {
             name: "Maccaroni",
             description: "Ein echter Klassiker.",
-            images: ["/assets/menu/29.jpg", "/assets/menu/30.jpg"],
+            images: ["./assets/menu/29.jpg", "./assets/menu/30.jpg"],
             products: [
               {
                 nr: "106",
