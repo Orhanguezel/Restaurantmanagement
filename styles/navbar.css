@@ -1,3 +1,4 @@
+/* General Navbar Styles */
 .navbar {
     background-color: var(--header-background);
     color: var(--text-color);
@@ -5,11 +6,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position:sticky;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition:border-bottom 0.3s ease;
+    transition: border-bottom 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -23,49 +24,48 @@
     justify-content: space-between;
 }
 
+/* Logo and Company Name */
 .navbar-logo {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .navbar-logo img {
-    height: 100px;
-    margin-right: 10px;
+    height: 80px;
 }
 
+.company-name {
+    font-family: var(--font-family-primary);
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Navbar Links (Center) */
 .navbar-links {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .navbar-links a {
     text-decoration: none;
     color: var(--text-color);
     font-family: var(--font-family-primary);
+    font-size: 1rem;
 }
 
+/* Navbar Icons (Right) */
 .navbar-icons {
     display: flex;
-    gap: 1rem;
+    justify-content: flex-end;
+    gap: 1.5rem;
     font-size: 1.5rem;
     color: var(--text-color);
 }
 
-.buy-now-btn {
-    background-color: var(--button-background);
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.buy-now-btn:hover {
-    background-color: var(--button-hover-background);
-}
-
+/* Hamburger Menu (Mobile) */
 .hamburger-menu {
     display: none;
     font-size: 1.5rem;
@@ -73,6 +73,7 @@
     color: var(--text-color);
 }
 
+/* Sidebar (Mobile Menu) */
 .sidebar {
     position: fixed;
     top: 0;
@@ -120,6 +121,7 @@
     color: var(--text-color);
 }
 
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .navbar-links {
         display: none;
@@ -127,5 +129,9 @@
 
     .hamburger-menu {
         display: block;
+    }
+
+    .navbar-icons {
+        justify-content: flex-end;
     }
 }
