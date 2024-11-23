@@ -1,0 +1,89 @@
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+.home-content {
+    max-width: 50%;
+    text-align: left;
+}
+
+.home-content h1 {
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.home-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.search-bar select,
+.search-bar input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+}
+
+.search-bar button {
+    background-color: var(--button-background);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: var(--button-hover-background);
+}
+
+.home-image {
+    max-width: 40%;
+    text-align: right;
+}
+
+.home-image img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+}
+
+/* Küçük ekranlar için resimleri gizleme */
+@media (max-width: 768px) {
+    .home {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .home-image {
+        display: none;
+    }
+
+    .home-content {
+        max-width: 100%;
+    }
+
+    .home-content h1 {
+        font-size: 2rem;
+    }
+
+    .home-content p {
+        font-size: 1rem;
+    }
+}
