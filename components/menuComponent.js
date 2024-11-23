@@ -47,9 +47,12 @@ export default function MenuComponent() {
   // Başlangıçta kategorileri göster
   displayCategoriesWithImages();
 
-  // Sidebar kategorisine tıklama
+  // Sidebar kategorisine tıklama (Doğru bağlama eklendi)
   categoriesList.addEventListener("click", (e) => {
-    const categoryName = e.target.dataset.category;
+    const clickedCategory = e.target.closest(".category-item");
+    if (!clickedCategory) return;
+
+    const categoryName = clickedCategory.dataset.category;
     const category = menu.categories.find((cat) => cat.name === categoryName);
 
     if (category) {
@@ -188,18 +191,17 @@ export default function MenuComponent() {
     window.history.pushState({}, "", newPath);
   }
 
-  // Resim yollarını çözmek için dinamik bir fonksiyonfunction resolveImagePath(path) {
-    const BASE_URL = "http://127.0.0.1:5500/Restaurantmanagement/"; // Canlıya alındığında güncellenecek
+  // Resim yollarını çözmek için dinamik bir fonksiyon
+  function resolveImagePath(path) {
+    const BASE_URL = "http://127.0.0.1:5500/Restaurantmanagement/";
 
-    function resolveImagePath(path) {
-      if (!path.startsWith("http") && !path.startsWith("/")) {
-        return `${BASE_URL}${path.replace(/^\.\//, "")}`;
-      }
-      return path.startsWith("")
-        ? `${BASE_URL}${path}`
-        : path;
+    if (!path.startsWith("http") && !path.startsWith("/")) {
+      return `${BASE_URL}${path.replace(/^\.\//, "")}`;
     }
+    return path.startsWith("")
+      ? `${BASE_URL}${path}`
+      : path;
+  }
 
   return section;
-
 }
