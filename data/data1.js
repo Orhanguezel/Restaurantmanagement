@@ -2,6 +2,7 @@ const data1 = [
 {   
     name: 'Hauptgerichte',
     description: 'Unsere Hauptgerichte sind herzhaft und sättigend, perfekt für den großen Hunger.',
+    images: ['./assets/menu/1.jpg', './assets/menu/2.jpg'],
     subcategories: [
       {
         name: 'Döner Spezialitäten',

@@ -3,7 +3,7 @@ import { default as menu } from "../js/Menu.js";
 export default function MenuComponent() {
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = "./styles/menu.css"; // CSS dosyasının doğru yolu
+  link.href = "./styles/menu.css";
   document.head.appendChild(link);
 
   const section = document.createElement("section");
@@ -44,18 +44,60 @@ export default function MenuComponent() {
   const categoriesList = section.querySelector(".categories-list");
   const productsGrid = section.querySelector(".products-grid");
 
-  // Kategoriye tıklama olayı
+  // Başlangıçta kategorileri göster
+  displayCategoriesWithImages();
+
+  // Sidebar kategorisine tıklama
   categoriesList.addEventListener("click", (e) => {
     const categoryName = e.target.dataset.category;
     const category = menu.categories.find((cat) => cat.name === categoryName);
 
     if (category) {
-      console.log("Selected Category:", category);
+      updateURL(`/menu/${encodeURIComponent(category.name)}`);
       loadSubcategories(category);
-    } else {
-      console.error("Category not found:", categoryName);
     }
   });
+
+  // Ortadaki kategori kartlarını göster
+  function displayCategoriesWithImages() {
+    productsGrid.innerHTML = `
+      <div class="category-grid">
+        ${menu.categories
+          .map((category) => {
+            const categoryImage =
+              category.images && category.images.length > 0
+                ? category.images[0]
+                : null;
+
+            return `
+              <div class="category-card" data-category="${category.name}">
+                ${
+                  categoryImage
+                    ? `<img src="${resolveImagePath(categoryImage)}" alt="${category.name} image" class="category-image"/>`
+                    : `<div class="no-image-placeholder">No Image</div>`
+                }
+                <h3>${category.name}</h3>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    `;
+
+    const categoryCards = productsGrid.querySelectorAll(".category-card");
+    categoryCards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        const categoryName = e.currentTarget.dataset.category;
+        const category = menu.categories.find(
+          (cat) => cat.name === categoryName
+        );
+        if (category) {
+          updateURL(`/menu/${encodeURIComponent(category.name)}`);
+          loadSubcategories(category);
+        }
+      });
+    });
+  }
 
   // Alt kategorileri yükleme
   function loadSubcategories(category) {
@@ -64,33 +106,28 @@ export default function MenuComponent() {
       return;
     }
 
-    console.log(`Loading subcategories for category: ${category.name}`);
-    console.log("Subcategories:", category.subcategories);
-
     productsGrid.innerHTML = `
       <div class="subcategory-list">
         <h2>${category.name}</h2>
         ${category.subcategories
-          .map(
-            (subcat) => {
-              const firstImage =
-                subcat.images && subcat.images.length > 0 ? subcat.images[0] : null;
+          .map((subcat) => {
+            const firstImage =
+              subcat.images && subcat.images.length > 0 ? subcat.images[0] : null;
 
-              return `
-                <div class="subcategory-item" data-subcategory="${subcat.name}">
-                  <div class="subcategory-images">
-                    ${
-                      firstImage
-                        ? `<img src="${resolveImagePath(firstImage)}" alt="${subcat.name} image" class="subcategory-image" style="width: 150px; height: auto; margin-right: 10px;"/>`
-                        : `<p>No images available</p>`
-                    }
-                  </div>
-                  <h3>${subcat.name}</h3>
-                  <p>${subcat.description || "No description available"}</p>
+            return `
+              <div class="subcategory-item" data-subcategory="${subcat.name}">
+                <div class="subcategory-images">
+                  ${
+                    firstImage
+                      ? `<img src="${resolveImagePath(firstImage)}" alt="${subcat.name} image" class="subcategory-image"/>`
+                      : `<p>No images available</p>`
+                  }
                 </div>
-              `;
-            }
-          )
+                <h3>${subcat.name}</h3>
+                <p>${subcat.description || "No description available"}</p>
+              </div>
+            `;
+          })
           .join("")}
       </div>
     `;
@@ -104,7 +141,6 @@ export default function MenuComponent() {
         );
 
         if (subcategory) {
-          console.log("Selected Subcategory:", subcategory);
           loadProducts(subcategory.products || []);
         }
       });
@@ -114,88 +150,56 @@ export default function MenuComponent() {
   // Ürünleri yükleme
   function loadProducts(products) {
     if (!products || products.length === 0) {
-        productsGrid.innerHTML = `<p>No products available</p>`;
-        return;
+      productsGrid.innerHTML = `<p>No products available</p>`;
+      return;
     }
 
     productsGrid.innerHTML = `
-        <div class="products-list">
-            ${products
-                .map(
-                    (item) => {
-                        // Resim kontrolü - Dizi veya string durumuna göre
-                        let productImage = null;
-                        if (Array.isArray(item.image) && item.image.length > 0) {
-                            productImage = item.image[0]; // İlk resmi al
-                        } else if (typeof item.image === "string" && item.image.length > 0) {
-                            productImage = item.image; // Direkt string al
-                        }
+      <div class="products-list">
+        ${products
+          .map((item) => {
+            let productImage = null;
+            if (Array.isArray(item.image) && item.image.length > 0) {
+              productImage = item.image[0];
+            } else if (typeof item.image === "string" && item.image.length > 0) {
+              productImage = item.image;
+            }
 
-                        console.log(`Processing product: ${item.name}`);
-                        console.log("Product image:", productImage);
-
-                        return `
-                            <div class="product-card">
-                                ${
-                                    productImage
-                                        ? `<img src="${resolveImagePath(productImage)}" alt="${item.name} image" class="product-image" style="width: 100px; height: auto; margin-bottom: 10px;"/>`
-                                        : ""
-                                }
-                                <h4>${item.name}</h4>
-                                <p>${item.description || "No description provided"}</p>
-                                <p><strong>${item.prices?.Price ? `${item.prices.Price} €` : "Price not available"}</strong></p>
-                            </div>
-                        `;
-                    }
-                )
-                .join("")}
-        </div>
+            return `
+              <div class="product-card">
+                ${
+                  productImage
+                    ? `<img src="${resolveImagePath(productImage)}" alt="${item.name} image" class="product-image"/>`
+                    : ""
+                }
+                <h4>${item.name}</h4>
+                <p>${item.description || "No description provided"}</p>
+                <p><strong>${item.prices?.Price ? `${item.prices.Price} €` : "Price not available"}</strong></p>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
     `;
-}
-
-
-  // Resim yollarını çözmek için dinamik bir fonksiyon
-  function resolveImagePath(path) {
-    if (path.startsWith("/")) {
-      return `${window.location.origin}${path}`; // Tam URL oluştur
-    }
-    return path; // Göreceli yol döndür
   }
 
-  // İlk kategori ve alt kategoriyi otomatik olarak yükleme
-  if (menu.categories.length > 0) {
-    const firstCategory = menu.categories[0];
-    console.log("First Category:", firstCategory);
-    loadSubcategories(firstCategory);
-
-    if (firstCategory.subcategories.length > 0) {
-      const firstSubcategory = firstCategory.subcategories[0];
-      console.log("First Subcategory:", firstSubcategory);
-      loadProducts(firstSubcategory.products || []);
-    }
+  // URL'yi güncellemek için fonksiyon
+  function updateURL(newPath) {
+    window.history.pushState({}, "", newPath);
   }
+
+  // Resim yollarını çözmek için dinamik bir fonksiyonfunction resolveImagePath(path) {
+    const BASE_URL = "http://127.0.0.1:5500/Restaurantmanagement/"; // Canlıya alındığında güncellenecek
+
+    function resolveImagePath(path) {
+      if (!path.startsWith("http") && !path.startsWith("/")) {
+        return `${BASE_URL}${path.replace(/^\.\//, "")}`;
+      }
+      return path.startsWith("")
+        ? `${BASE_URL}${path}`
+        : path;
+    }
 
   return section;
-}
 
-// Menü ile ilgili bilgileri loglayarak kontrol edin
-console.log("Menu:", menu);
-console.log("Categories:", menu.categories);
-
-// İlk kategori ve alt kategoriyi kontrol et
-if (menu.categories.length > 0) {
-  const firstCategory = menu.categories[0];
-  console.log("First Category:", firstCategory);
-  console.log("First Category Subcategories:", firstCategory.subcategories);
-
-  if (firstCategory.subcategories.length > 0) {
-    const firstSubcategory = firstCategory.subcategories[0];
-    console.log("First Category First Subcategory:", firstSubcategory);
-    console.log("First Category First Subcategory Products:", firstSubcategory.products);
-
-    if (firstSubcategory.products.length > 0) {
-      console.log("First Product:", firstSubcategory.products[0]);
-      console.log("First Product Prices:", firstSubcategory.products[0].prices);
-    }
-  }
 }
