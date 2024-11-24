@@ -36,6 +36,10 @@ class Subcategory {
         ${productsInfo ? "Products:\n" + productsInfo : "No products available"}
         `;
   }
+
+  getTotalLikes() {
+    return this.products.reduce((total, product) => total + product.likes, 0);
+  }
 }
 
 export default Subcategory;

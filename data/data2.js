@@ -2,6 +2,8 @@ const data2 = [
     {
         name: "Beilagen",
         description: "Unsere Beilagen ergänzen jedes Gericht perfekt.",
+        icon: "fas fa-seedling",
+        images: ['./assets/menu/1.jpg', './assets/menu/2.jpg'],
         subcategories: [
           {
             name: "Pizzabrötchen 6 Stk",

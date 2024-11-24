@@ -29,7 +29,9 @@ class Product {
         deposit = 0,
         createdAt = new Date(),
         updatedAt = new Date(),
-        image = [] // Resim özelliği eklendi
+        image = [], // Resim özelliği
+        preparationTime = 30, // Varsayılan hazırlık süresi
+        likes = 0, // Varsayılan beğeni sayısı
     }) {
         this.nr = nr || "Bilinmiyor"; // Ürün numarası
         this.type = type || "Bilinmiyor"; // Ürün türü
@@ -43,17 +45,23 @@ class Product {
         this.deposit = deposit;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.image = Array.isArray(image) ? image : []; // Resim özelliği bir diziye dönüştürülüyor
+        this.preparationTime = preparationTime; // Hazırlık süresi
+        this.likes = likes; // Beğeni sayısı
 
-        // `images` özelliğini bir diziye dönüştür
-        this.image = Array.isArray(image) ? image : [];
-        console.log(`Ürün oluşturuldu: ${this.name} (${this.nr}), Resimler: ${this.images}`);
+        console.log(
+            `Ürün oluşturuldu: ${this.name} (${this.nr}), Resimler: ${
+                this.image.length > 0 ? this.image.join(", ") : "No images"
+            }, Hazırlık Süresi: ${this.preparationTime} dakika`
+        );
     }
 
     getDescription() {
         const priceKeys = Object.keys(this.prices);
-        const priceString = priceKeys.length > 0
-            ? priceKeys.map((key) => `${key}: ${this.prices[key].toFixed(2)} €`).join(", ")
-            : "Fiyat bilgisi yok";
+        const priceString =
+            priceKeys.length > 0
+                ? priceKeys.map((key) => `${key}: ${this.prices[key].toFixed(2)} €`).join(", ")
+                : "Fiyat bilgisi yok";
 
         return `${this.name} (${this.type}) - ${priceString}: ${this.description}`;
     }
@@ -94,6 +102,11 @@ class Product {
         }
     }
 
+    likeProduct() {
+        this.likes += 1;
+        console.log(`Ürün beğenildi: ${this.name}, Toplam Beğeni: ${this.likes}`);
+    }
+
     displayProductInfo() {
         return `
         Produktnummer: ${this.nr}
@@ -111,6 +124,8 @@ class Product {
           .join(", ")}
         Extras: ${this.getExtras()}
         Images: ${this.image.length > 0 ? this.image.join(", ") : "No images"}
+        Preparation Time: ${this.preparationTime} minutes
+        Likes: ${this.likes}
         `;
     }
 }

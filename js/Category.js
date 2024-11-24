@@ -2,9 +2,11 @@ import Subcategory from "./Subcategory.js";
 import Product from "./Product.js";
 
 class Category {
-  constructor(name, description = "") {
+  constructor(name, description = "", icon = "", images = []) {
     this.name = name;
     this.description = description;
+    this.icon = icon;
+    this.images = images;
     this.subcategories = [];
     this.products = [];
     console.log(`Yeni bir Category nesnesi oluşturuldu: ${this.name}`);
@@ -19,7 +21,7 @@ class Category {
     const subcategory = new Subcategory(
       subcategoryData.name,
       subcategoryData.description || "",
-      subcategoryData.images || [] // Resim bilgisi ekleniyor
+      subcategoryData.images || []
     );
 
     if (Array.isArray(subcategoryData.products)) {

@@ -2,6 +2,8 @@ const data4 = [
     {
       name: 'Salate und Saucen',
       description: 'Unsere Hauptgerichte sind herzhaft und sättigend, perfekt für den großen Hunger.',
+      icon: "fas fa-leaf",
+      images: ['./assets/menu/1.jpg', './assets/menu/2.jpg'],
       subcategories: [
         {
           name: 'Salate',

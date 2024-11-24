@@ -2,6 +2,7 @@ const data1 = [
 {   
     name: 'Hauptgerichte',
     description: 'Unsere Hauptgerichte sind herzhaft und sättigend, perfekt für den großen Hunger.',
+    icon: 'fas fa-utensils',
     images: ['./assets/menu/1.jpg', './assets/menu/2.jpg'],
     subcategories: [
       {
@@ -16,6 +17,7 @@ const data1 = [
             zusatzstoffe: [2, 3, 4],
             allergene: ['a', 'g', 'f', 'l', 'b'],
             description: 'mit Salat und Tzatziki',
+            images: ['./assets/menu/1.jpg', './assets/menu/2.jpg'],
             prices: { klein: 6.5, groß: 9.5},
             extras: { Hirtenkäse: 0.7 }
           },

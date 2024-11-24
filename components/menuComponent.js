@@ -21,8 +21,12 @@ export default function MenuComponent() {
         <ul class="categories-list">
           ${menu.categories
             .map(
-              (category) =>
-                `<li class="category-item" data-category="${category.name}">${category.name}</li>`
+              (category) => `
+                <li class="category-item" data-category="${category.name}">
+                  <i class="${category.icon || 'fas fa-tag'} category-icon"></i>
+                  ${category.name}
+                </li>
+              `
             )
             .join("")}
         </ul>
@@ -47,7 +51,7 @@ export default function MenuComponent() {
   // Başlangıçta kategorileri göster
   displayCategoriesWithImages();
 
-  // Kategoriye tıklama olayları
+  // Kategori liste elemanlarına tıklama
   categoriesList.addEventListener("click", (e) => {
     const clickedCategory = e.target.closest(".category-item");
     if (!clickedCategory) return;
@@ -62,6 +66,24 @@ export default function MenuComponent() {
       renderFallback();
     }
   });
+
+  // Kategori kartlarına tıklama olayını dinle
+  function addCategoryCardListeners() {
+    const categoryCards = productsGrid.querySelectorAll(".category-card");
+    categoryCards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        const categoryName = card.dataset.category;
+        const category = menu.categories.find((cat) => cat.name === categoryName);
+
+        if (category) {
+          loadSubcategories(category);
+        } else {
+          console.error("Category not found:", categoryName);
+          renderFallback();
+        }
+      });
+    });
+  }
 
   // Kategori kartlarını göster
   function displayCategoriesWithImages() {
@@ -88,6 +110,7 @@ export default function MenuComponent() {
           .join("")}
       </div>
     `;
+    addCategoryCardListeners(); // Kartlara tıklama olayını ekle
   }
 
   // Alt kategorileri yükleme
@@ -123,7 +146,6 @@ export default function MenuComponent() {
       </div>
     `;
 
-    // Alt kategoriye tıklama olayını dinle
     const subcategoryItems = productsGrid.querySelectorAll(".subcategory-item");
     subcategoryItems.forEach((item) => {
       item.addEventListener("click", (e) => {
@@ -147,35 +169,63 @@ export default function MenuComponent() {
       productsGrid.innerHTML = `<p>No products available</p>`;
       return;
     }
-
+  
     productsGrid.innerHTML = `
-      <div class="products-list">
+      <div class="products-grid">
         ${products
-          .map((item) => {
-            const productImage = Array.isArray(item.image)
-              ? item.image[0]
-              : typeof item.image === "string"
-              ? item.image
-              : null;
-
+          .map((product) => {
+            const productImage = product.image && product.image.length > 0 ? product.image[0] : null;
+            const prepTime = product.prepTime || 30; // Varsayılan süre 30 dakika
+            const likes = product.likes || 0; // Varsayılan beğeni sayısı
+            const isLiked = product.isLiked || false;
+  
             return `
               <div class="product-card">
-                ${
-                  productImage
-                    ? `<img src="${resolveImagePath(productImage)}" alt="${item.name} image" class="product-image"/>`
-                    : ""
-                }
-                <h4>${item.name}</h4>
-                <p>${item.description || "No description provided"}</p>
-                <p><strong>${item.prices?.Price ? `${item.prices.Price} €` : "Price not available"}</strong></p>
+                <img src="${productImage || 'placeholder-image.jpg'}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                  <h4>${product.name}</h4>
+                  <p>${product.description || 'No description available'}</p>
+                  <div class="prep-time">
+                    <i class="fas fa-clock"></i> ${prepTime} mins
+                  </div>
+                  <div class="rating">
+                    ${[...Array(5)]
+                      .map(
+                        (_, i) =>
+                          `<i class="star ${
+                            i < likes ? '' : 'empty'
+                          }">&#9733;</i>`
+                      )
+                      .join('')}
+                  </div>
+                  <div class="like ${isLiked ? 'liked' : ''}">
+                    <i class="fas fa-heart"></i>
+                  </div>
+                </div>
               </div>
             `;
           })
-          .join("")}
+          .join('')}
       </div>
     `;
+  
+    // Beğeni işlevselliğini ekle
+    const likeButtons = document.querySelectorAll('.like');
+    likeButtons.forEach((likeButton) => {
+      likeButton.addEventListener('click', () => {
+        const productCard = likeButton.closest('.product-card');
+        const productName = productCard.querySelector('h4').textContent;
+        const product = products.find((p) => p.name === productName);
+  
+        if (product) {
+          product.isLiked = !product.isLiked; // Beğeni durumunu değiştir
+          product.likes = product.isLiked ? product.likes + 1 : product.likes - 1;
+          loadProducts(products); // UI'yi güncelle
+        }
+      });
+    });
   }
-
+  
   // Fallback gösterimi
   function renderFallback() {
     productsGrid.innerHTML = `<p>No content available. Please try again later.</p>`;

@@ -1,6 +1,3 @@
-
-
-
 .menu-header {
   margin: 0;
   width: 100%;
@@ -33,7 +30,7 @@
   background-color: var(--secondary-color);
   padding: 10px;
   box-shadow: var(--box-shadow);
-  border: 1px solid red;
+  border: 1px solid var(--border);
 }
 
 .menu-categories h2 {
@@ -42,27 +39,37 @@
   text-align: center;
 }
 
-.categories-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.category-item {
+.categories-list .category-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
   padding: 10px;
   cursor: pointer;
-  font-size: 1.1rem;
   border-bottom: 1px solid var(--border);
-  text-align: center;
 }
+
+.categories-list .category-item i {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
+
 
 .category-item:hover {
   background-color: var(--button-hover-background);
   color: var(--text-color);
 }
 
+.category-icon {
+  font-size: 1.5rem;
+  color: var(--text-color2);
+}
+
+
 .menu-products {
-  width: 80%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
 }
 
@@ -77,57 +84,12 @@ label {
   font-size: 1.1rem;
 }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Her kart için minimum 250px, genişlik sığdıkça daha fazla */
-  gap: 20px;
-  padding: 20px;
-}
-
-.product-card {
-  background-color: var(--text-color);
-  border: 1px solid var(--border);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  text-align: center;
-  box-shadow: var(--box-shadow);
-  transition: transform 0.2s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-card:hover {
-  transform: scale(1.05);
-}
-
-.product-card h4 {
-  margin: 15px 10px;
-  font-size: 1.2rem;
-  color: var(--text-color2);
-}
-
-.product-card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-bottom: 1px solid var(--border);
-}
-
-.product-card p {
-  margin: 10px;
-  font-size: 1rem;
-  color: var(--text-color2);
-}
-
-.products-grid > .product-card:hover {
-  transform: scale(1.05);
-}
-
+/* Kategori kartlarını flex yapısına çeviriyoruz */
 .category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  padding: 20px;
+  justify-content: center; /* Kartları ortalar */
 }
 
 .category-card {
@@ -141,7 +103,11 @@ label {
   box-shadow: var(--box-shadow);
   text-align: center;
   transition: transform 0.2s ease-in-out;
+  flex: 1 1 calc(33.33% - 40px); /* Her bir kart için %33 genişlik, boşlukları hesaba katar */
+  max-width: 300px; /* Kartın maksimum genişliği */
+  min-width: 200px; /* Kartın minimum genişliği */
 }
+
 
 .category-card:hover {
   transform: scale(1.05);
@@ -173,6 +139,101 @@ label {
   border-radius: 5px;
 }
 
+/* Ürün kartlarını flex yapısına çeviriyoruz */
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  padding: 20px;
+}
+.product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-info h4 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.product-info p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.product-info .prep-time {
+  font-size: 0.9rem;
+  color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.product-info .prep-time i {
+  margin-right: 5px;
+  color: #f56c6c;
+}
+
+.product-info .rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.product-info .rating .star {
+  font-size: 1.2rem;
+  color: #ffd700;
+  margin-right: 3px;
+}
+
+.product-info .rating .star.empty {
+  color: #ccc;
+}
+
+.product-info .like {
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.product-info .like.liked {
+  color: #ff4747;
+}
+
+
+
+/* Mobil uyumluluk */
 @media (max-width: 768px) {
   .menu-content {
     flex-direction: column;
@@ -185,5 +246,11 @@ label {
 
   .menu-products {
     width: 100%;
+  }
+
+  .category-card,
+  .product-card {
+    max-width: 100%;
+    flex: 1 1 100%;
   }
 }

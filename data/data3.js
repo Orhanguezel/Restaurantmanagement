@@ -2,6 +2,8 @@ const data3= [
     {
       name: 'Für Kinder',
       description: 'Unsere Hauptgerichte sind herzhaft und sättigend, perfekt für den großen Hunger.',
+      icon: "fas fa-child",
+      images: ['./assets/menu/1.jpg', './assets/menu/2.jpg'],
       subcategories: [
         {
           name: 'Für unsere kleine Freunde',
