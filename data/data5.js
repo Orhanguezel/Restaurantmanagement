@@ -2,6 +2,8 @@ const data5 = [
     {
       name: 'Getränke',
       description: 'Unsere Auswahl an Getränken.',
+      icon: "fas fa-wine-glass-alt",
+      images: ['./assets/menu/1.jpg', './assets/menu/2.jpg'],
       subcategories: [
         {
           name: 'Alkoholische Getränke',

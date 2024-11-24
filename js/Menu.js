@@ -27,13 +27,29 @@ class Menu {
       .map((category) => category.getCategoryInfo())
       .join("\n\n");
   }
+
+  getTotalLikes() {
+    return this.categories.reduce((total, category) => {
+      return (
+        total +
+        category.subcategories.reduce((subTotal, subcategory) => {
+          return (
+            subTotal +
+            subcategory.products.reduce((productTotal, product) => {
+              return productTotal + product.likes;
+            }, 0)
+          );
+        }, 0)
+      );
+    }, 0);
+  }
 }
 
 const menuInstance = new Menu();
 
 allDataFiles.forEach((dataFile) => {
   dataFile.forEach((categoryData) => {
-    const category = new Category(categoryData.name, categoryData.description);
+    const category = new Category(categoryData.name, categoryData.description, categoryData.icon, categoryData.images || []);
     console.log(`Ana kategori eklendi: ${categoryData.name}`);
 
     if (Array.isArray(categoryData.subcategories)) {
@@ -41,7 +57,8 @@ allDataFiles.forEach((dataFile) => {
         const subcategory = new Subcategory(
           subcatData.name,
           subcatData.description,
-          subcatData.images || [] // Resimleri ekliyoruz
+          
+          subcatData.images || []
         );
 
         if (Array.isArray(subcatData.products)) {
@@ -67,5 +84,6 @@ allDataFiles.forEach((dataFile) => {
 });
 
 console.log("Mevcut Menü Bilgisi:\n", menuInstance.getMenuInfo());
+console.log("Toplam Beğeni Sayısı:", menuInstance.getTotalLikes());
 
 export { Menu, menuInstance as default };

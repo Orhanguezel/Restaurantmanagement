@@ -2,6 +2,7 @@ const data6 = [
   {
       name: "Sparmenus",
       description: "Unsere Sparmenus bieten eine großartige Kombination aus Geschmack und Preis.",
+      icon: "fas fa-tags",
       images: ["./assets/menu/25.jpg", "./assets/menu/26.jpg"],
       subcategories: [
           {
