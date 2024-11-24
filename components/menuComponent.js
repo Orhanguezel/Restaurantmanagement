@@ -47,7 +47,7 @@ export default function MenuComponent() {
   // Başlangıçta kategorileri göster
   displayCategoriesWithImages();
 
-  // Sidebar kategorisine tıklama (Doğru bağlama eklendi)
+  // Kategoriye tıklama olayları
   categoriesList.addEventListener("click", (e) => {
     const clickedCategory = e.target.closest(".category-item");
     if (!clickedCategory) return;
@@ -56,12 +56,14 @@ export default function MenuComponent() {
     const category = menu.categories.find((cat) => cat.name === categoryName);
 
     if (category) {
-      updateURL(`/menu/${encodeURIComponent(category.name)}`);
       loadSubcategories(category);
+    } else {
+      console.error("Category not found:", categoryName);
+      renderFallback();
     }
   });
 
-  // Ortadaki kategori kartlarını göster
+  // Kategori kartlarını göster
   function displayCategoriesWithImages() {
     productsGrid.innerHTML = `
       <div class="category-grid">
@@ -86,26 +88,12 @@ export default function MenuComponent() {
           .join("")}
       </div>
     `;
-
-    const categoryCards = productsGrid.querySelectorAll(".category-card");
-    categoryCards.forEach((card) => {
-      card.addEventListener("click", (e) => {
-        const categoryName = e.currentTarget.dataset.category;
-        const category = menu.categories.find(
-          (cat) => cat.name === categoryName
-        );
-        if (category) {
-          updateURL(`/menu/${encodeURIComponent(category.name)}`);
-          loadSubcategories(category);
-        }
-      });
-    });
   }
 
   // Alt kategorileri yükleme
   function loadSubcategories(category) {
-    if (!category.subcategories || category.subcategories.length === 0) {
-      productsGrid.innerHTML = `<p>No subcategories available</p>`;
+    if (!category || !category.subcategories || category.subcategories.length === 0) {
+      productsGrid.innerHTML = `<p>No subcategories available for "${category?.name || "Unknown"}"</p>`;
       return;
     }
 
@@ -135,16 +123,19 @@ export default function MenuComponent() {
       </div>
     `;
 
-    const subcategoryElements = productsGrid.querySelectorAll(".subcategory-item");
-    subcategoryElements.forEach((element) => {
-      element.addEventListener("click", (e) => {
+    // Alt kategoriye tıklama olayını dinle
+    const subcategoryItems = productsGrid.querySelectorAll(".subcategory-item");
+    subcategoryItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
         const subcategoryName = e.currentTarget.dataset.subcategory;
         const subcategory = category.subcategories.find(
           (subcat) => subcat.name === subcategoryName
         );
 
         if (subcategory) {
-          loadProducts(subcategory.products || []);
+          loadProducts(subcategory.products);
+        } else {
+          renderFallback();
         }
       });
     });
@@ -161,12 +152,11 @@ export default function MenuComponent() {
       <div class="products-list">
         ${products
           .map((item) => {
-            let productImage = null;
-            if (Array.isArray(item.image) && item.image.length > 0) {
-              productImage = item.image[0];
-            } else if (typeof item.image === "string" && item.image.length > 0) {
-              productImage = item.image;
-            }
+            const productImage = Array.isArray(item.image)
+              ? item.image[0]
+              : typeof item.image === "string"
+              ? item.image
+              : null;
 
             return `
               <div class="product-card">
@@ -186,21 +176,19 @@ export default function MenuComponent() {
     `;
   }
 
-  // URL'yi güncellemek için fonksiyon
-  function updateURL(newPath) {
-    window.history.pushState({}, "", newPath);
+  // Fallback gösterimi
+  function renderFallback() {
+    productsGrid.innerHTML = `<p>No content available. Please try again later.</p>`;
   }
 
-  // Resim yollarını çözmek için dinamik bir fonksiyon
+  // Resim yollarını çözmek
   function resolveImagePath(path) {
-    const BASE_URL = "http://127.0.0.1:5500/Restaurantmanagement/";
+    const BASE_URL = window.location.origin + "/Restaurantmanagement";
 
     if (!path.startsWith("http") && !path.startsWith("/")) {
-      return `${BASE_URL}${path.replace(/^\.\//, "")}`;
+      return `${BASE_URL}/${path.replace(/^\.\//, "")}`;
     }
-    return path.startsWith("")
-      ? `${BASE_URL}${path}`
-      : path;
+    return path;
   }
 
   return section;
