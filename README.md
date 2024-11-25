@@ -5,6 +5,7 @@ Welcome to the **Restaurant Management System**, a comprehensive and dynamic web
 ## 📋 Overview
 
 This project provides a platform to display restaurant menus, categories, and products in an organized and visually appealing way. It includes features such as sorting, liking products, and dynamic updates. You can check out the live demo of the project [here](https://orhanguezel.github.io/Restaurantmanagement/).
+[Restaurant Management System Bildschirm](./img.png)
 
 ---
 
