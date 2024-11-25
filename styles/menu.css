@@ -1,3 +1,13 @@
+
+
+body {
+  font-family: var(--font-family-primary);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* HEADER STYLES */
 .menu-header {
   margin: 0;
   width: 100%;
@@ -17,18 +27,21 @@
   font-size: 1rem;
 }
 
+/* MAIN CONTENT */
 .menu-content {
-  background-color: var(--background-color);
-  color: var(--text-color2);
   display: flex;
   flex-direction: row;
   gap: 20px;
+  background-color: var(--background-color);
+  padding: var(--padding);
+  color: var(--text-color2);
 }
 
+/* CATEGORY SIDEBAR */
 .menu-categories {
   width: 20%;
   background-color: var(--secondary-color);
-  padding: 10px;
+  padding: var(--padding);
   box-shadow: var(--box-shadow);
   border: 1px solid var(--border);
 }
@@ -37,6 +50,13 @@
   margin: 0 0 10px;
   font-size: 1.5rem;
   text-align: center;
+  color: var(--text-color2);
+}
+
+.categories-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .categories-list .category-item {
@@ -47,13 +67,13 @@
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid var(--border);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .categories-list .category-item i {
   font-size: 1.5rem;
   color: var(--accent-color);
 }
-
 
 .category-item:hover {
   background-color: var(--button-hover-background);
@@ -65,31 +85,40 @@
   color: var(--text-color2);
 }
 
-
+/* PRODUCTS AREA */
 .menu-products {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: var(--padding);
 }
 
 .sorting {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-label {
+.sorting label {
   font-size: 1.1rem;
+  color: var(--text-color2);
 }
 
-/* Kategori kartlarını flex yapısına çeviriyoruz */
+.sorting select {
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+}
+
+/* CATEGORY CARDS */
 .category-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center; /* Kartları ortalar */
+  justify-content: center;
 }
 
 .category-card {
@@ -103,18 +132,17 @@ label {
   box-shadow: var(--box-shadow);
   text-align: center;
   transition: transform 0.2s ease-in-out;
-  flex: 1 1 calc(33.33% - 40px); /* Her bir kart için %33 genişlik, boşlukları hesaba katar */
-  max-width: 300px; /* Kartın maksimum genişliği */
-  min-width: 200px; /* Kartın minimum genişliği */
+  flex: 1 1 calc(33.33% - 40px);
+  max-width: 300px;
+  min-width: 200px;
 }
-
 
 .category-card:hover {
   transform: scale(1.05);
 }
 
 .category-card h3 {
-  margin-bottom: 15px;
+  margin: 15px 0;
   font-size: 1.5rem;
   color: var(--accent-color);
 }
@@ -129,30 +157,31 @@ label {
 .no-image-placeholder {
   width: 100%;
   height: 150px;
-  background-color: #ccc;
+  background-color: var(--star-empty-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--text-color);
   font-size: 1rem;
   font-weight: bold;
   border-radius: 5px;
 }
 
-/* Ürün kartlarını flex yapısına çeviriyoruz */
+/* PRODUCT CARDS */
 .products-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: space-around;
+  justify-content: center;
   padding: 20px;
 }
+
 .product-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background-color: var(--card-background);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
   transition: transform 0.3s ease-in-out;
   text-align: center;
   width: 300px;
@@ -169,29 +198,28 @@ label {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border);
 }
 
 .product-info {
   padding: 15px;
-  text-align: center;
 }
 
 .product-info h4 {
   font-size: 1.2rem;
   margin: 10px 0;
-  color: #333;
+  color: var(--text-color2);
 }
 
 .product-info p {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-color2);
   margin: 5px 0;
 }
 
 .product-info .prep-time {
   font-size: 0.9rem;
-  color: #888;
+  color: var(--prep-time-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,7 +228,7 @@ label {
 
 .product-info .prep-time i {
   margin-right: 5px;
-  color: #f56c6c;
+  color: var(--accent-color);
 }
 
 .product-info .rating {
@@ -212,28 +240,54 @@ label {
 
 .product-info .rating .star {
   font-size: 1.2rem;
-  color: #ffd700;
+  color: var(--star-color);
   margin-right: 3px;
+  transition: color 0.3s ease;
 }
 
 .product-info .rating .star.empty {
-  color: #ccc;
+  color: var(--star-empty-color);
+}
+
+.product-info .rating .like-count {
+  font-size: 0.9rem;
+  color: var(--text-color2);
+  margin-left: 5px;
+  font-style: italic;
 }
 
 .product-info .like {
   font-size: 1.5rem;
-  color: #ccc;
+  color: var(--star-empty-color);
   cursor: pointer;
   transition: color 0.3s;
 }
 
 .product-info .like.liked {
-  color: #ff4747;
+  color: var(--like-color);
 }
 
+.star {
+  color: var(--star-empty-color);
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
 
+.star.filled {
+  color: var(--star-color);
+}
 
-/* Mobil uyumluluk */
+.like {
+  cursor: pointer;
+  color: var(--star-empty-color);
+  transition: color 0.3s ease;
+}
+
+.like.liked {
+  color: var(--like-color);
+}
+
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
   .menu-content {
     flex-direction: column;

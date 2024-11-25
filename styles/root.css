@@ -1,20 +1,25 @@
 :root {
-    --primary-color: #D12727;
-    --secondary-color: #FFB100;
-    --accent-color: #FF6F61;
-    --text-color: #ffffff;
-    --text-color2: #000000;
-    --background-color: #FFF5E5;
-    --header-background: #D12727;
-    --link-color: #FFB100;
-    --button-background: #FFB100;
-    --button-hover-background: #FFA500;
-    --card-background: #FFF5E5;
-    --border: #e6e6e6;
-    --font-family-primary: 'Roboto', sans-serif;
-    --font-family-secondary: 'Open Sans', sans-serif;
-    --padding: 1rem;
-    --margin: 1rem;
-    --border-radius: 8px;
-    --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  --primary-color: #D12727;
+  --secondary-color: #FFB100;
+  --accent-color: #FF6F61;
+  --text-color: #ffffff;
+  --text-color2: #000000;
+  --background-color: #FFF5E5;
+  --header-background: #D12727;
+  --link-color: #FFB100;
+  --button-background: #FFB100;
+  --button-hover-background: #FFA500;
+  --card-background: #FFF5E5;
+  --border: #e6e6e6;
+  --like-color: #ff4747;
+  --star-color: #ffd700;
+  --star-empty-color: #ccc;
+  --prep-time-color: #888;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --font-family-primary: 'Roboto', sans-serif;
+  --font-family-secondary: 'Open Sans', sans-serif;
+  --padding: 1rem;
+  --margin: 1rem;
+  --border-radius: 8px;
+  --box-shadow: 0px 4px 6px var(--box-shadow-color);
+}
