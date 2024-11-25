@@ -12,20 +12,23 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        submodules: true
+        fetch-depth: 0
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 20  # En son Node.js sürümü
 
     - name: Install dependencies
       run: npm install
 
     - name: Build project
-      run: npm run build
+      run: npm run build  # Build komutunuz burada çalıştırılır
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build # Bu, build edilen dosyaların çıktısının bulunduğu dizindir
+        publish_dir: ./build  # Build çıktı dizininize göre ayarlayın
