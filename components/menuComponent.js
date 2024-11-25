@@ -97,18 +97,18 @@ export default function MenuComponent() {
     const products = category.subcategories
       ? category.subcategories.flatMap((subcat) => subcat.products)
       : [];
-
+  
     if (!products || products.length === 0) {
       productsGrid.innerHTML = `<p>No products available in "${category.name}"</p>`;
       return;
     }
-
+  
     productsGrid.innerHTML = `
       <div class="products-grid">
         ${products
           .map((product) => {
             const productImage = product.image && product.image.length > 0 ? resolveImagePath(product.image[0]) : null;
-
+  
             return `
               <div class="product-card">
                 ${
@@ -131,6 +131,7 @@ export default function MenuComponent() {
                         }">&#9733;</i>`
                     )
                     .join("")}
+                  <span class="like-count">(${product.likes || 0})</span>
                 </div>
                 <div class="like ${product.isLiked ? "liked" : ""}" data-id="${product.nr}">
                   <i class="fas fa-heart"></i>
@@ -141,26 +142,48 @@ export default function MenuComponent() {
           .join("")}
       </div>
     `;
-
+  
     addLikeFunctionality(products);
   }
-
-  // Beğeni işlevselliği
+  
   function addLikeFunctionality(products) {
     const likeButtons = productsGrid.querySelectorAll(".like");
     likeButtons.forEach((likeButton) => {
       likeButton.addEventListener("click", () => {
         const productId = likeButton.dataset.id;
         const product = products.find((p) => p.nr === productId);
-
+  
         if (product) {
           product.isLiked = !product.isLiked;
-          product.likes = product.isLiked ? 5 : 0; // Beğenildiğinde 5 yıldız, kaldırıldığında 0 yıldız
+          product.likes = product.isLiked ? product.likes + 1 : product.likes - 1;
+          console.log(`Product Liked: ${product.isLiked}, Name: ${product.name}, Total Likes: ${product.likes}`);
           loadProductsFromCategory({ subcategories: [{ products }] }); // UI'yi güncelle
         }
       });
     });
   }
+  
+
+// Yıldız ve beğeni UI güncellemesi
+function updateProductUI(product, likeButton) {
+  // Yıldızları güncelle
+  const productCard = likeButton.closest(".product-card");
+  const ratingElement = productCard.querySelector(".rating");
+  ratingElement.innerHTML = [...Array(5)]
+    .map(
+      (_, i) =>
+        `<i class="star ${i < product.likes ? "filled" : "empty"}">&#9733;</i>`
+    )
+    .join("");
+
+  // Beğeni durumu güncelle
+  if (product.isLiked) {
+    likeButton.classList.add("liked");
+  } else {
+    likeButton.classList.remove("liked");
+  }
+}
+
 
   // Resim yollarını çöz
   function resolveImagePath(path) {

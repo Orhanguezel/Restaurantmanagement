@@ -550,7 +550,7 @@ const menu = [
                         updatedAt: new Date(),
                         image: ["./assets/menu/34.jpg"],
                         preparationTime: 5,
-                        likes: 0,
+                        likes: 4,
                         likesHistory: []
                     },
                     {
@@ -604,7 +604,7 @@ const menu = [
                         updatedAt: new Date(),
                         image: ["./assets/menu/34.jpg"],
                         preparationTime: 5,
-                        likes: 0,
+                        likes: 10,
                         likesHistory: []
                     },
                     {
@@ -622,7 +622,7 @@ const menu = [
                         updatedAt: new Date(),
                         image: ["./assets/menu/34.jpg"],
                         preparationTime: 5,
-                        likes: 0,
+                        likes: 5,
                         likesHistory: []
                     }
                 ]
