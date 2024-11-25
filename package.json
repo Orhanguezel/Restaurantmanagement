@@ -8,7 +8,7 @@
     "start": "npx http-server . -c-1",
     "test": "node test.js",
     "build": "echo 'No build step necessary for this project.'",
-    "deploy": "gh-pages -d ."
+    "deploy": "gh-pages -d dist"
   },
   "homepage": "https://orhanguezel.github.io/Restaurantmanagement",
   "keywords": [
