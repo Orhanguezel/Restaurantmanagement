@@ -1,11 +1,25 @@
 {
   "name": "restaurantmanagement",
   "version": "1.0.0",
+  "description": "A Restaurant Management web application for managing menu categories, products, and user interactions.",
+  "main": "index.html",
+  "type": "module",
   "scripts": {
+    "start": "npx http-server . -c-1",
     "test": "node test.js",
+    "build": "echo 'No build step necessary for this project.'",
     "deploy": "gh-pages -d ."
   },
-  "type": "module",
+  "homepage": "https://orhanguezel.github.io/Restaurantmanagement",
+  "keywords": [
+    "Restaurant",
+    "Management",
+    "Menu",
+    "Web Development",
+    "JavaScript"
+  ],
+  "author": "Orhan Güzel",
+  "license": "MIT",
   "dependencies": {
     "fs": "^0.0.1-security",
     "path": "^0.12.7"
